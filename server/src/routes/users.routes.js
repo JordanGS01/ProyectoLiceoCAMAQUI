@@ -3,18 +3,23 @@ const router = Router();
 
 //Controllers imports
 const { getAllUsers, getSingleUser, 
-        addUser, deleteUser, updateUser } = require('../controllers/users.controller')
+        addUser, deleteUser, updateUser,
+        getAllStudents, loginUser } = require('../controllers/users.controller')
 
 //Routes
-router.get('/users', getAllUsers)
+router.get('/users', getAllUsers);
 
-router.get('/users/10', getSingleUser)
+router.get('/students', getAllStudents);
 
-router.post('/users', addUser)
+router.get('/login', loginUser);
 
-router.delete('/users', deleteUser)
+router.get('/users/:ced', getSingleUser);
 
-router.put('/users', updateUser)
+router.post('/users', addUser);
+
+router.delete('/users/:id', deleteUser);
+
+router.put('/users/:id', updateUser);
 
 
 module.exports = router;
