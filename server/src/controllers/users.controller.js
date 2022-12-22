@@ -1,25 +1,25 @@
 const pool = require('../connection')
 
 
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res, next) => {
     try {
         const allUsers = await pool.query('SELECT * FROM usuarios')
         res.json(allUsers.rows[0]);
     } catch (error) {
-        console.log(error.message);
+        next(error);
     }
 }
 
-const getAllStudents = async (req, res) => {
+const getAllStudents = async (req, res, next) => {
     try {
         const allUsers = await pool.query("SELECT cedula, nombre_completo, tipo FROM usuarios WHERE tipo = 'E'")
         res.json(allUsers.rows[0]);
     } catch (error) {
-        console.log(error.message);
+        next(error);
     }
 }
 
-const getSingleUser = async (req, res) => {
+const getSingleUser = async (req, res, next) => {
     try {
         const { ced } = req.params;
     
@@ -35,11 +35,11 @@ const getSingleUser = async (req, res) => {
         return res.json(result.rows[0]);
 
     } catch (error) {
-        console.log(error.message);
+        next(error);
     }
 }
 //TODO: Modificarlo para que se encripte la contraseña
-const addUser = async (req, res) => {
+const addUser = async (req, res, next) => {
     const { cedula, nombre, tipo, contra } = req.body;
     
     try {
@@ -51,11 +51,11 @@ const addUser = async (req, res) => {
         console.log(result);
         res.json('Se agregó correctamentte');
     } catch (error) {
-        res.json({ error: error.message });
+        next(error);
     }
 }
 
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res, next) => {
     try {
         const { id } = req.params;
         console.log(id)
@@ -71,11 +71,11 @@ const deleteUser = async (req, res) => {
         //Se le notifica al servidor que todo funcionó correctamente
         return res.sendStatus(204);
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 }
 
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, next) => {
     try {
         const { id } = req.params;
         const { nombre, tipo, contra } = req.body;
@@ -91,12 +91,11 @@ const updateUser = async (req, res) => {
 
         return res.json(userFound);
     } catch (error) {
-        console.log(error);
+        next(error);
     }
 }
 
-//TODO: Crear función para validar el login
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
     try {
         const { ced, contra } = req.body;
 
@@ -111,7 +110,7 @@ const loginUser = async (req, res) => {
         console.log(result);
         return res.json(result.rows[0]);
     } catch (error) {
-        console.log(error.message);
+        next(error);
     }
 }
 
