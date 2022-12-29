@@ -1,6 +1,6 @@
 import Box from '@mui/material/Box';
 
-import './informacion.css'
+import './Informacion.css'
 
 export const Informacion = ({ titulo, contenido }) => {
   return (
