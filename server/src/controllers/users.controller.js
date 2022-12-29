@@ -4,7 +4,11 @@ const pool = require('../connection')
 const getAllUsers = async (req, res, next) => {
     try {
         const allUsers = await pool.query('SELECT * FROM usuarios')
-        res.json(allUsers.rows[0]);
+        
+        res.json({
+            status: 'OK',
+            data: allUsers.rows
+        });
     } catch (error) {
         next(error);
     }
@@ -12,8 +16,12 @@ const getAllUsers = async (req, res, next) => {
 
 const getAllStudents = async (req, res, next) => {
     try {
-        const allUsers = await pool.query("SELECT cedula, nombre_completo, tipo FROM usuarios WHERE tipo = 'E'")
-        res.json(allUsers.rows[0]);
+        const allStudents = await pool.query("SELECT cedula, nombre_completo, tipo FROM usuarios WHERE tipo = 'E'")
+        
+        res.json({
+            status: 'OK',
+            data: allStudents.rows
+        });
     } catch (error) {
         next(error);
     }
@@ -32,13 +40,15 @@ const getSingleUser = async (req, res, next) => {
             })
         }
 
-        return res.json(result.rows[0]);
+        return res.json({
+            student: result.rows[0]
+        });
 
     } catch (error) {
         next(error);
     }
 }
-//TODO: Modificarlo para que se encripte la contraseña
+
 const addUser = async (req, res, next) => {
     const { cedula, nombre, tipo, contra } = req.body;
     
@@ -49,7 +59,10 @@ const addUser = async (req, res, next) => {
             [cedula, nombre, tipo, contra]
         );
         console.log(result);
-        res.json('Se agregó correctamentte');
+        res.json({
+            status: "OK",
+            message: "Agregado correctamente"
+        });
     } catch (error) {
         next(error);
     }
@@ -57,9 +70,8 @@ const addUser = async (req, res, next) => {
 
 const deleteUser = async (req, res, next) => {
     try {
-        const { id } = req.params;
-        console.log(id)
-        const result = await pool.query('DELETE FROM usuarios WHERE cedula = $1', [id]);
+        const { ced } = req.params;
+        const result = await pool.query('DELETE FROM usuarios WHERE cedula = $1', [ced]);
         
         //En caso de que no se encuentre el usuario que se quiere eliminar
         if (result.rowCount === 0){
@@ -77,10 +89,11 @@ const deleteUser = async (req, res, next) => {
 
 const updateUser = async (req, res, next) => {
     try {
-        const { id } = req.params;
-        const { nombre, tipo, contra } = req.body;
+        const { ced } = req.params;
+        const { nombre, tipo } = req.body;
+        const { contra } = req.headers;
 
-        const result = await pool.query('SELECT update_user($1,$2,$3,$4)', [id, nombre, tipo, contra])
+        const result = await pool.query('SELECT update_user($1,$2,$3,$4)', [ced, nombre, tipo, contra])
         
         const userFound = result.rows[0].update_user;
         if (!userFound){
@@ -89,7 +102,9 @@ const updateUser = async (req, res, next) => {
             })
         }
 
-        return res.json(userFound);
+        return res.json({
+            modified: userFound
+        });
     } catch (error) {
         next(error);
     }
@@ -97,11 +112,10 @@ const updateUser = async (req, res, next) => {
 
 const loginUser = async (req, res, next) => {
     try {
-        const { ced, contra } = req.body;
-
-        const result = await pool.query('SELECT login_user($1,$2)',[ced,contra]);
+        const { cedula, contra } = req.headers;
         
-        //if(result.rows[0])
+        const result = await pool.query('SELECT login_user($1,$2)',[cedula,contra]);
+        
         if (result.rows[0].login_user.length === 4) {
             return res.status(404).json({
                 message: false

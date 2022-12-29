@@ -1,0 +1,575 @@
+{
+	"info": {
+		"_postman_id": "53b5de86-ca43-465e-b9b9-2d0a81b01a61",
+		"name": "Users APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get all users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Se obtiene un arrego de datos\", () => {\r",
+							"    const { data } = response;\r",
+							"    pm.expect(data).to.be.an('array');\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/users",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all students",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Se obtiene un arrego de datos\", () => {\r",
+							"    const { data } = response;\r",
+							"    pm.expect(data).to.be.an('array');\r",
+							"})\r",
+							"\r",
+							"pm.test(\"El arreglo obtenido solo debe contener estudiantes\", () => {\r",
+							"    const { data } = response;\r",
+							"    const usuariosNoEstudiantes = data.filter((user) => user.tipo === 'A' || user.tipo === 'P')\r",
+							"    pm.expect(usuariosNoEstudiantes.length).to.equal(0);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/students",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"students"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Administrador loguea correctamente\", () => {\r",
+							"    const { login_user } = response;\r",
+							"    pm.expect(login_user).to.equal(\"(999999999,JordanGS,A)\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cedula",
+						"value": "{{cedulaAdmin}}",
+						"type": "text"
+					},
+					{
+						"key": "contra",
+						"value": "{{contraAdmin}}",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"JordanGS\",\r\n    \"tipo\":\"A\",\r\n    \"contra\":\"jordanAdmin$##$\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/login",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login with unexistent user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Debe retornar un mensaje con el valor de falso\", () => {\r",
+							"    const { message } = response;\r",
+							"    pm.expect(message).to.equal(false);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "cedula",
+						"value": "1",
+						"type": "text"
+					},
+					{
+						"key": "contra",
+						"value": "blabla",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"JordanGS\",\r\n    \"tipo\":\"A\",\r\n    \"contra\":\"jordanAdmin$##$\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/login",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"El usuario debe agregarse correctamente\", () => {\r",
+							"    pm.expect(response.message).to.equal(\"Agregado correctamente\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cedula\":{{cedPrueba}},\r\n    \"nombre\":\"Estudiante1\",\r\n    \"tipo\":\"E\",\r\n    \"contra\":\"estudiante1\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/users",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get single user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Se obtiene el estudiante con el número de cédula deseado\", () => {\r",
+							"    const { student } = response;\r",
+							"    const { cedula } = student;\r",
+							"\r",
+							"    const cedulaBuscada = parseInt(pm.collectionVariables.get(\"cedPrueba\"));\r",
+							"\r",
+							"    pm.expect(cedula).to.equal(cedulaBuscada);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/users/:ced",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"users",
+						":ced"
+					],
+					"variable": [
+						{
+							"key": "ced",
+							"value": "{{cedPrueba}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify unexistent user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Debe retornar un mensaje especificando que no encontró el usuario\", () => {\r",
+							"    const { message } = response;\r",
+							"    pm.expect(message).to.equal(\"El usuario no se ha encontrado\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "contra",
+						"value": "Lalala",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"Modificado\",\r\n    \"tipo\":\"E\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/users/:ced",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"users",
+						":ced"
+					],
+					"variable": [
+						{
+							"key": "ced",
+							"value": "77"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Debe retornar una variable modified con valor true\", () => {\r",
+							"    const { modified } = response;\r",
+							"    pm.expect(modified).to.equal(true);\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "contra",
+						"value": "Lalala",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\":\"modificado\",\r\n    \"tipo\":\"E\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/users/:ced",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"users",
+						":ced"
+					],
+					"variable": [
+						{
+							"key": "ced",
+							"value": "{{cedPrueba}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete unexistent user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Debe retornar un mensaje especificando que no encontró el usuario a eliminar\", () => {\r",
+							"    const { message } = response;\r",
+							"    pm.expect(message).to.equal(\"El usuario no fue encontrado\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/users/:ced",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"users",
+						":ced"
+					],
+					"variable": [
+						{
+							"key": "ced",
+							"value": "77"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/users/:ced",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"users",
+						":ced"
+					],
+					"variable": [
+						{
+							"key": "ced",
+							"value": "{{cedPrueba}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "currentUrl",
+			"value": "http://localhost:3300"
+		},
+		{
+			"key": "contraAdmin",
+			"value": "$#$#administrador#$#$"
+		},
+		{
+			"key": "cedulaAdmin",
+			"value": "999999999"
+		},
+		{
+			"key": "cedPrueba",
+			"value": "208140256"
+		}
+	]
+}

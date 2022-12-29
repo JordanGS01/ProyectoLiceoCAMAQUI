@@ -17,9 +17,9 @@ router.get('/users/:ced', getSingleUser);
 
 router.post('/users', addUser);
 
-router.delete('/users/:id', deleteUser);
+router.delete('/users/:ced', deleteUser);
 
-router.put('/users/:id', updateUser);
+router.put('/users/:ced', updateUser);
 
 
 module.exports = router;

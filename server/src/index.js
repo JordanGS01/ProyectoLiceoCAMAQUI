@@ -22,15 +22,14 @@ app.use(express.json());
 ///// ROUTES \\\\\
 app.use(userRouter);
 //Manejo de errores
+
+///// HANDLING ERRORS \\\\\
 app.use((err, req, res, next) => {
     return res.status(500).json({
         status: "error",
         message: err.message
     })
 });
-
-///// HANDLING ERRORS \\\\\
-
 
 //Puerto en el que estará escuchando el API
 app.listen(3300, () => {
