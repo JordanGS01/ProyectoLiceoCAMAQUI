@@ -1,0 +1,23 @@
+.caja{
+    width: 70%;
+    display: flex;
+    justify-content: center;
+    height: 73%;
+}
+
+a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+}
+
+.botones{
+    width: 50%;
+    padding: 7%;
+    background: #D8D9DC;
+    display: flex;
+    flex-direction: column;
+    border: 3px solid;
+    border-color: #0B92DC;
+    border-radius: 5px;
+
+}
