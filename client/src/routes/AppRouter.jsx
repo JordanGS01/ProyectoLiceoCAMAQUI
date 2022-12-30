@@ -12,11 +12,11 @@ export const AppRouter = () => {
     <>
     <Routes>
 
-        <Route path='/' element={ <PaginaPrincipal /> }/>
-        <Route path='/pv' element={ <PlataformaVirtualRouter /> }/>
-        <Route path='/prematricula' element={ <Prematricula /> }/>
+        <Route path='paginaPrincipal' element={ <PaginaPrincipal /> }/>
+        <Route path='pv' element={ <PlataformaVirtualRouter /> }/>
+        <Route path='prematricula' element={ <Prematricula /> }/>
 
-        <Route path='/*' element={ <PaginaPrincipal /> }/>
+        <Route path='/*' element={ <PlataformaVirtualRouter /> }/>
         
     </Routes>
     </>
