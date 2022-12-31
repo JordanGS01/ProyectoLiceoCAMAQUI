@@ -1,7 +1,12 @@
 
 
+import Container from '@mui/material/Container';
+import { FormSignin } from './components'
+
 export const SignIn = () => {
   return (
-    <div>SignIn</div>
+    <Container maxWidth="sm" sx={{ background: '#E8E7E7' }}>
+      <FormSignin />
+    </Container>
   )
 }

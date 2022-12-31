@@ -1,6 +1,7 @@
 
 
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import { Box, FormControl, TextField, Button, InputAdornment, IconButton, Typography } from '@mui/material'
 import { BadgeOutlined, PasswordOutlined, Visibility, VisibilityOff } from '@mui/icons-material'
@@ -8,9 +9,13 @@ import { BadgeOutlined, PasswordOutlined, Visibility, VisibilityOff } from '@mui
 import './FormLogin.css'
 
 
+
 export const FormLogin = () => {
   
     const [showPassword, setShowPassword] = useState(false);
+
+    const navigate = useNavigate();
+
 
     return (
     <Box
@@ -32,6 +37,7 @@ export const FormLogin = () => {
         <FormControl sx={{ m: 2 }}>
             <TextField
                 required
+                autoFocus
                 label='Número de cédula'
                 id='cedula-usuario'
                 InputProps={{
@@ -82,7 +88,12 @@ export const FormLogin = () => {
         {/* Sección de la botones */}
         <div className='FormLogin-ContenedorBotones'>
 
-            <Button variant="contained">Registrarse</Button>
+            <Button
+                variant="contained"
+                onClick={ () => { navigate('/signin') } }
+            >
+                Registrarse
+            </Button>
 
             <Button
                 variant="contained"
