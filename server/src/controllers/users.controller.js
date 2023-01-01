@@ -58,7 +58,7 @@ const addUser = async (req, res, next) => {
             "SELECT create_user($1,$2,$3,$4)",
             [cedula, nombre, tipo, contra]
         );
-        console.log(result);
+        
         res.json({
             status: "OK",
             message: "Agregado correctamente"

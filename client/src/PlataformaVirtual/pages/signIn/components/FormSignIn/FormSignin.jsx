@@ -10,6 +10,8 @@ import './FormSignin.css'
 import { useForm } from '../../../../hooks'
 import { onFormSubmit } from '../../helpers/registrarUsuario'
 
+import { Alert } from '../../../../../ui/components/Alert';
+
 
 export const FormSignin = () => {
   
@@ -20,6 +22,8 @@ export const FormSignin = () => {
         contraInvalida: false,
         contraNoCoincide: false
     })
+    const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
+    const [openAlertError, setOpenAlertError] = useState(false);
 
     const navigate = useNavigate();
 
@@ -44,13 +48,12 @@ export const FormSignin = () => {
                 flexDirection: 'column',
             }}
     >
-        <form onSubmit={ (e) => { onFormSubmit( e, formState, setWarnings ) } }>
+        <form onSubmit={ (e) => { onFormSubmit( e, formState, setWarnings, setOpenAlertSuccess, setOpenAlertError ) } }>
 
             <Typography variant="h3" gutterBottom sx={{ ml: 2, color: '#FFFFFF' }}>
                 Registrarse
             </Typography>
             
-            {/* INCOMPLETO */}
             {/* Sección de nombre completo */}
             <FormControl sx={{ m: 2, ml: 3, width: '90%' }}>
                 <TextField
@@ -78,7 +81,6 @@ export const FormSignin = () => {
                 />
             </FormControl>
 
-            {/* INCOMPLETO */}
             {/* Sección de la cédula */}
             <FormControl sx={{ m: 2, ml: 3, width: '90%' }}>
                 <TextField
@@ -105,7 +107,6 @@ export const FormSignin = () => {
                 />
             </FormControl>
             
-            {/* INCOMPLETO */}
             {/* Sección de la contraseña */}
             <FormControl sx={{ m: 2, ml: 3, width: '90%' }}>
                 <TextField
@@ -144,7 +145,6 @@ export const FormSignin = () => {
 
             </FormControl>
 
-            {/* INCOMPLETO */}
             {/* Sección de confirmar contraseña */}
             <FormControl sx={{ m: 2, ml: 3, width: '90%' }}>
                 <TextField
@@ -205,6 +205,30 @@ export const FormSignin = () => {
             </div>
     
         </form>
+        
+        {/* Alert que se mostrará cuando el registro se culmine exitosamente */}
+        <Alert 
+            open = { openAlertSuccess }
+            handleClose = {() => { setOpenAlertSuccess(false) }}
+            title = "Registro exitoso"
+            content = "Se ha registrado exitosamente en el sistema"
+            acceptButtonText = "Aceptar"
+            acceptButtonFunction = { () => { navigate('/login') } }
+            oneButton = { true }
+        />
+        
+        {/* Alert que se mostrará cuando no se pueda registrar el usuario porque ya 
+            existe otro usuario con el número de cédula ingresado */}
+        <Alert 
+            open = { openAlertError }
+            handleClose = {() => { setOpenAlertError(false) }}
+            title = "Ha ocurrodo un error"
+            content = "El número de cédula que digitó ya existe registrado en el sistema"
+            acceptButtonText = "Aceptar"
+            acceptButtonFunction = {() => { setOpenAlertError(false) }}
+            oneButton = { true }
+        />
+
     </Box>
   )
 }

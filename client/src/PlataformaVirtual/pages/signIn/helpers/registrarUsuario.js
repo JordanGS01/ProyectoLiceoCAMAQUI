@@ -1,5 +1,7 @@
 
 
+import axios from "axios";
+
 // Se encarga de validar, mediante expresiones regulares, que el nombre del usuario cumpla los requisitos
 const validarNombre = ( nombre ) => {
     
@@ -79,18 +81,29 @@ const validarDatos = ( nombre, cedula, contra, repContra, setWarnings ) => {
 
 }
 
-const registrarUsuario = () => {
-    console.log('Se registró el usuario correctamente!')
+const registrarUsuario = ( nombre, cedula, contra, setOpenSuccessAlert, setOpenErrorAlert ) => {
+    axios.post('http://localhost:3300/users', {
+        cedula,
+        nombre,
+        tipo: 'E',
+        contra
+    }).then(( response ) => {
+        setOpenSuccessAlert(true);
+        console.log( response );
+    }, ( error ) => {
+        setOpenErrorAlert(true);
+        console.log( error );
+    })
 }
 
-export const onFormSubmit = ( e, { nombre, cedula, contra, repContra }, setWarnings ) => {
+export const onFormSubmit = ( e, { nombre, cedula, contra, repContra }, setWarnings, setOpenSuccessAlert, setOpenErrorAlert ) => {
     
     e.preventDefault();
     
     const noHayErrores = validarDatos(nombre, cedula, contra, repContra, setWarnings);
 
     if ( noHayErrores ) {
-        registrarUsuario();
+        registrarUsuario( nombre, cedula, contra, setOpenSuccessAlert, setOpenErrorAlert );
     }
 }
 
