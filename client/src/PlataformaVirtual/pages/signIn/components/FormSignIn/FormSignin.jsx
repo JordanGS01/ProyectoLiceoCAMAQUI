@@ -40,12 +40,13 @@ export const FormSignin = () => {
     return (
     <Box
         component="span" 
+        maxWidth='sm'
         sx={{   p: 2,
                 border: '1px solid grey',
                 background: '#4FA4D3',
                 borderRadius: '20px',
                 display: 'flex',
-                flexDirection: 'column',
+                flexDirection: 'column'
             }}
     >
         <form onSubmit={ (e) => { onFormSubmit( e, formState, setWarnings, setOpenAlertSuccess, setOpenAlertError ) } }>

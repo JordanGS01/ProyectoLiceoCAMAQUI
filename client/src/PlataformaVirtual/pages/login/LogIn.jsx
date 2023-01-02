@@ -1,14 +1,15 @@
 
 
-import Container from '@mui/material/Container';
 import { FormLogin } from './components'
 
 import './LogIn.css'
 
+//TODO: VERIFICAR SI EL USUARIO ESTA CONECTADO
+//SI LO ESTA, SE REDIRECCIONA AL MENU PRINCIPAL
 export const LogIn = () => {
   return (
-    <Container maxWidth="sm" sx={{ background: '#E8E7E7' }}>
+    <div className='Login-Container'>
       <FormLogin />
-    </Container>
+    </div>
   )
 }
