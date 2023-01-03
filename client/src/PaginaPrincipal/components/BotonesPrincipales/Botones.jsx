@@ -1,28 +1,54 @@
-import React from 'react'
+
+
+import { useNavigate } from 'react-router'
+
+import Button from '@mui/material/Button'
+import Box from '@mui/material/Box';
 
 import './Botones.css'
 
-import Button from '@mui/material/Button'
-
-import Box from '@mui/material/Box';
-
 export const Botones = () => {
+  const navigate = useNavigate();
+
   return (
     <>
-      <div class='caja'>
-        <Box class="botones">
-          <Button sx={{
-            background: '#4FA4D3', height: '70px', '&:hover': {
-              backgroundColor: ' #0B92DC'
-            },textTransform: 'none',fontFamily:'arial'
-          }}><a href="#">Prematricula en línea</a></Button>
-          <Button sx={{
-            background: '#4FA4D3', marginTop: '10%', height: '70px', '&:hover': {
-              backgroundColor: ' #0B92DC'
-            },textTransform: 'none', fontFamily:'arial'
-          }
-          } > <a href="#">Plataforma Virtual</a></Button>
+      <div class='PP-Botones-Container'>
+
+        <Box class="PP-Botones">
+
+          <Button 
+            sx={{
+              background: '#4FA4D3',
+              height: '70px', 
+              '&:hover': { backgroundColor: ' #0B92DC' },
+              textTransform: 'none',
+              fontFamily:'arial',
+              color: '#FFFFFF'
+            }}
+
+            onClick = { () => { navigate('/prematricula') } }
+          >
+            Prematricula en línea
+          </Button>
+
+          <Button 
+            sx={{
+              background: '#4FA4D3',
+              marginTop: '10%',
+              height: '70px',
+              '&:hover': { backgroundColor: ' #0B92DC' },
+              textTransform: 'none',
+              fontFamily:'arial',
+              color: '#FFFFFF'
+            }}
+
+            onClick = { () => { navigate('/pv') } }
+          >
+            Plataforma Virtual
+          </Button>
+
       </Box>
+
     </div>
 
     </>

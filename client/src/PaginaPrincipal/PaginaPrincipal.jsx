@@ -19,7 +19,9 @@ export const PaginaPrincipal = () => {
     return (
         <>
             <Header />
-            <Box class='box'>
+
+            <Box class='PaginaPrincipal-Container'>
+
                 <Grid container spacing={2}>
                     <Grid item xs={6}>
                         <NoticiaPrincipal />
@@ -28,25 +30,30 @@ export const PaginaPrincipal = () => {
                         <Botones />
                     </Grid>
                 </Grid>
+
                 <Informacion
-                    titulo={"¿Que es la plataforma virtual?"}
-                    contenido={"Liceo CAMAQUI cuenta con un sistema en linea que brinda apoyo a los estudiantes en su proceso de aprendizaje, aquí puedes realizar actividades como: Revisar tus cursos matriculados según tu grupo Agregar, modificar o eliminar tareas pendientes Unirte a una nueva clase"}
+                    titulo = "¿Que es la plataforma virtual?"
+                    contenido = "Liceo CAMAQUI cuenta con un sistema en linea que brinda apoyo a los estudiantes en su proceso de aprendizaje, aquí puedes realizar actividades como: Revisar tus cursos matriculados según tu grupo Agregar, modificar o eliminar tareas pendientes Unirte a una nueva clase"
+                    id = "QueEsLaPlataforma"
                 />
 
                 <Informacion
-                    titulo={"Mision"}
-                    contenido={"Educar y formar integralmente con la finalidad que los estudiantes alcancen su autorrealización humana y profesional a través de un proyecto educativo innovador que desarrolle competencias, pensamiento crítico y analítico, aptitudes, habilidades y destrezas."}
+                    titulo = "Misión"
+                    contenido = "Educar y formar integralmente con la finalidad que los estudiantes alcancen su autorrealización humana y profesional a través de un proyecto educativo innovador que desarrolle competencias, pensamiento crítico y analítico, aptitudes, habilidades y destrezas."
+                    id = "Mision"
                 />
-                   <Informacion
-                    titulo={"Vision"}
-                    contenido={"Liceo CAMAQUI busca digitalizar procesos realizados cotidianamente por los profesores y estudiantes de dicha institución para brindar herramientas que potencien el proceso de aprendizaje. Además pretende explotar los recursos electrónicos presentes en la institución, involucrando a los estudiantes en el desarrollo tecnológico y así evolucionar hacia un mundo más automatizado."}
+                <Informacion
+                    titulo = "Visión"
+                    contenido = "Liceo CAMAQUI busca digitalizar procesos realizados cotidianamente por los profesores y estudiantes de dicha institución para brindar herramientas que potencien el proceso de aprendizaje. Además pretende explotar los recursos electrónicos presentes en la institución, involucrando a los estudiantes en el desarrollo tecnológico y así evolucionar hacia un mundo más automatizado."
+                    id = "Vision"
                 />
-                   <Informacion
-                    titulo={"Acerca del Liceo CAMAQUI"}
-                    contenido={"Informacion del liceo."}
+                <Informacion
+                    titulo = "Acerca del Liceo CAMAQUI"
+                    contenido = "Informacion del liceo."
+                    id = "AcercaDe"
                 />
             </Box>
-            <Footer></Footer>
+            <Footer />
 
         </>
     )

@@ -2,15 +2,24 @@ import Box from '@mui/material/Box';
 
 import './Informacion.css'
 
-export const Informacion = ({ titulo, contenido }) => {
+export const Informacion = ({ titulo, contenido, id }) => {
   return (
-    <>
-      <Box sx={{ background: '#D9D9D9', height: '100%',borderRadius:'5px'
-        }}>
-        <h2 class ='tituloNoticia'>{titulo}</h2>
-        <p class = "parrafo">{contenido}</p>
-      </Box>
+      <Box 
+        sx = {{ 
+          background: '#D9D9D9',
+          height: '100%',
+          borderRadius:'5px' 
+        }}
+      >
 
-    </>
+        <h2 className ='PaginaPrincipal-Informacion-Titulo' id={ id }>
+          { titulo }
+        </h2>
+        
+        <p className = "PaginaPrincipal-Informacion-Parrafo">
+          { contenido }
+        </p>
+
+      </Box>
   )
 }

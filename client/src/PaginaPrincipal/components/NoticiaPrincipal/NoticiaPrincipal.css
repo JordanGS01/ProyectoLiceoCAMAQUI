@@ -1,15 +1,15 @@
-.cancha{
+.PaginaPrincipal-Noticia-Cancha {
     border-radius: 10px;
     width: 100%;
     height: 100%;
 }
 
-.texto{
+.PaginaPrincipal-Noticia-Texto {
     margin-top: 10%;
     color: #0B92DC;
 }
 
-.lin{
+.PaginaPrincipal-Noticia-Linea {
     margin-top: 10px;
     background: #0B92DC;
     height: 1px;

@@ -2,7 +2,7 @@
     background-color: #DFDDDD;
 }
 
-.opciones{
+.PaginaPrincipal-Header-Opciones{
     margin-left: 50px;
     width: 100%;
     height: 100%;
@@ -11,13 +11,13 @@
     align-items: flex-end;
 }
 
-.enlace{
+.PaginaPrincipal-Header-Enlace{
     margin-left: 50px;
     color: #0B92DC;
     text-decoration: none;
 }
 
-.linea{
+.PaginaPrincipal-Header-Linea{
     background: #0B92DC;
     height: 2px;
 }

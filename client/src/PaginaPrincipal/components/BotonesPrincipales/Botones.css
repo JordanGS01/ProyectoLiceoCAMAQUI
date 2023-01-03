@@ -1,4 +1,4 @@
-.caja{
+.PP-Botones-Container{
     width: 100%;
     display: flex;
     justify-content: center;
@@ -10,7 +10,7 @@ a{
     color: rgb(255, 255, 255);
 }
 
-.botones{
+.PP-Botones{
     width: 300px;
     padding: 5%;
     background: #D8D9DC;

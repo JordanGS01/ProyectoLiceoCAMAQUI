@@ -1,24 +1,16 @@
+
+
+import { Box, Container, Grid, Link } from '@mui/material';
+import { LocalPhone, WhatsApp, Facebook } from '@mui/icons-material';
+
 import './Footer.css'
-
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container'
-import Grid from '@mui/material/Grid'
-import { Link } from '@mui/material';
-
-import LocalPhoneIcon from '@mui/icons-material/LocalPhone';
-
-
-
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-
-import FacebookIcon from '@mui/icons-material/Facebook';
 
 
 export const Footer = () => {
     return (
         <footer>
-            <Box sx={{ background: '#4C87A8', color: 'white' }}
-
+            <Box 
+                sx={{ background: '#4C87A8', color: 'white' }}
                 px={{ xs: 3, sm: 10 }}
                 py={{ xs: 5, sm: 10 }}
             >
@@ -34,7 +26,7 @@ export const Footer = () => {
                                 </Link>
                             </Box>
                             <Box sx={{ marginTop: '5%' }}>
-                                <Link href='/' color='inherit' sx={{ textDecoration: 'None' }} >
+                                <Link href='/prematricula' color='inherit' sx={{ textDecoration: 'None' }} >
                                     Prematricula en línea
                                 </Link>
                             </Box>
@@ -44,12 +36,12 @@ export const Footer = () => {
                                 Dirección institucional
                             </Box>
                             <Box>
-                                <p href='/' color='inherit'>
+                                <p color='inherit'>
                                     Elmer Villalobos
                                 </p>
                             </Box>
                             <Box>
-                                <p href='/'>
+                                <p>
                                     Patricia Vargas
                                 </p>
                             </Box>
@@ -59,19 +51,19 @@ export const Footer = () => {
                                 Contáctenos
                             </Box>
                             <Box>
-                                <Link href='#' class='phone'>
-                                    <LocalPhoneIcon sx={{ color: 'white', marginRight: '2%' }}></LocalPhoneIcon>
-                                    <p> 60101078</p>
+                                <Link class='PaginaPrincipal-Footer-Phone'>
+                                    <LocalPhone sx={{ color: 'white', marginRight: '2%' }} />
+                                    <p>6010-1078</p>
                                 </Link>
 
-                                <Link href='#' class='phone'>
-                                    <WhatsAppIcon sx={{ color: 'white', marginRight: '2%' }}></WhatsAppIcon>
-                                    <p> 24775898</p>
+                                <Link class='PaginaPrincipal-Footer-Phone'>
+                                    <WhatsApp sx={{ color: 'white', marginRight: '2%' }} />
+                                    <p>2477-5898</p>
                                 </Link>
 
                                 <Link href='https://www.facebook.com/CAMAQUI2002' class='phone'>
-                                    <FacebookIcon sx={{ color: 'white', marginRight: '2%' }}></FacebookIcon>
-                                    <p> Facebook</p>
+                                    <Facebook sx={{ color: 'white', marginRight: '2%' }} />
+                                    <p>Facebook</p>
                                 </Link>
                             </Box>
                         </Grid>
