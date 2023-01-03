@@ -3,7 +3,7 @@ const pool = require('../connection')
 
 const getAllUsers = async (req, res, next) => {
     try {
-        const allUsers = await pool.query('SELECT * FROM usuarios')
+        const allUsers = await pool.query("SELECT cedula, nombre_completo, tipo FROM usuarios WHERE tipo!='A'")
         
         res.json({
             status: 'OK',
