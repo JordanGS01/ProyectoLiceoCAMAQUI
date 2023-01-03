@@ -150,7 +150,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\":\"JordanGS\",\r\n    \"tipo\":\"A\",\r\n    \"contra\":\"jordanAdmin$##$\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -170,7 +170,7 @@
 			"response": []
 		},
 		{
-			"name": "Login with unexistent user",
+			"name": "Login with nonexistent user",
 			"event": [
 				{
 					"listen": "test",
@@ -210,7 +210,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"nombre\":\"JordanGS\",\r\n    \"tipo\":\"A\",\r\n    \"contra\":\"jordanAdmin$##$\"\r\n}",
+					"raw": "",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -335,7 +335,7 @@
 			"response": []
 		},
 		{
-			"name": "Modify unexistent user",
+			"name": "Modify nonexistent user",
 			"event": [
 				{
 					"listen": "test",
@@ -453,7 +453,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete unexistent user",
+			"name": "Delete nonexistent user",
 			"event": [
 				{
 					"listen": "test",

@@ -1,0 +1,11 @@
+
+
+.FormLogin-ContenedorBotones{
+    display: flex;
+    margin-left: auto;
+}
+
+.FormLogin-Form{
+    display: flex;
+    flex-direction: column;
+}

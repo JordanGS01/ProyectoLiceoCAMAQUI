@@ -58,7 +58,7 @@ const addUser = async (req, res, next) => {
             "SELECT create_user($1,$2,$3,$4)",
             [cedula, nombre, tipo, contra]
         );
-        console.log(result);
+        
         res.json({
             status: "OK",
             message: "Agregado correctamente"
@@ -121,8 +121,18 @@ const loginUser = async (req, res, next) => {
                 message: false
             });
         };
-        console.log(result);
-        return res.json(result.rows[0]);
+        
+        const { login_user } = result.rows[0];
+        const dataWithoutPI = login_user.replace('(','');
+        const dataWithoutPD = dataWithoutPI.replace(')','');
+        const arrWithUserData = dataWithoutPD.split(',');
+        const userData = {
+            nombre: arrWithUserData[1],
+            cedula: arrWithUserData[0],
+            tipo: arrWithUserData[2]
+        }
+
+        return res.json(userData);
     } catch (error) {
         next(error);
     }

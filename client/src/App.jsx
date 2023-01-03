@@ -1,14 +1,14 @@
 
 
 import './App.css';
-import { PaginaPrincipal } from './PaginaPrincipal/PaginaPrincipal'
+import { AppRouter } from './routes/AppRouter'
 
 
 
-function App() {
+const App = () => {
   return (
     <div className="App">
-      <PaginaPrincipal/>
+      <AppRouter />
     </div>
   );
 }
