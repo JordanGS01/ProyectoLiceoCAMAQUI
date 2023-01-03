@@ -69,7 +69,7 @@ export const Footer = () => {
                                     <p> 24775898</p>
                                 </Link>
 
-                                <Link href='#' class='phone'>
+                                <Link href='https://www.facebook.com/CAMAQUI2002' class='phone'>
                                     <FacebookIcon sx={{ color: 'white', marginRight: '2%' }}></FacebookIcon>
                                     <p> Facebook</p>
                                 </Link>
