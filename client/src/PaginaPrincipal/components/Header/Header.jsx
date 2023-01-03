@@ -14,7 +14,7 @@ export const Header = () => {
     <>
       <AppBar position="fixed" class='PaginaPrincipal-Navbar'>
         <Toolbar>
-          <a href="#"> <img class="LogoPrincipal" src={ReactLogo} alt="" /></a>
+          <a href="/"> <img class="LogoPrincipal" src={ReactLogo} alt="" /></a>
           <div class='container'>
             <div class='opciones'>
               <a class='enlace' href="#">
