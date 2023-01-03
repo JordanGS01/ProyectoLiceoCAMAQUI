@@ -1,0 +1,9 @@
+.NavBar-Logo {
+    width: 3.5rem;
+}
+
+.NavBar-ButonsContainer {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
