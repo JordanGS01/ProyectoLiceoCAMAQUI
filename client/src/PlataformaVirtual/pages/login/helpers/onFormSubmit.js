@@ -9,7 +9,6 @@ export const onFormSubmit = async (e, { cedula, contra }, setUser, setOpenAlert)
     const logedIn = await loginUser( cedula, contra, setUser );
     //FALTA REDIRECCIONAR DESDE EL OTRO SISTEMA
     if ( !logedIn ) {
-        console.log('La cuenta no existe')
         setOpenAlert( true );
     }
 }

@@ -15,7 +15,7 @@ import { onFormSubmit } from '../../helpers';
 
 
 export const FormLogin = () => {
-    const { setUser, loged } = useContext( UserContext );
+    const { setUser, loged, isStudent, isProfessor, isAdmin  } = useContext( UserContext );
     const [showPassword, setShowPassword] = useState(false);
     const [openAlert, setOpenAlert] = useState(false);
 
@@ -28,7 +28,9 @@ export const FormLogin = () => {
     const { cedula, contra } = formState;
     
     
-    { loged && navigate('/menuInicial') }
+    { loged && (isStudent() || isProfessor()) && navigate('/menuInicial') }
+    { loged && isAdmin() && navigate('/admin') }
+
     return (
     <Box
         component="span" 
