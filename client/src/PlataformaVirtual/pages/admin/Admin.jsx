@@ -1,8 +1,15 @@
 
 
+import { useContext, useEffect } from 'react';
+
+import { useNavigate } from 'react-router';
+
 import { Box, Table, TableBody, TableCell, TableContainer,
         TablePagination, TableRow, Paper, Checkbox,
-        FormControlLabel, Switch } from '@mui/material';
+        FormControlLabel, Switch, Alert } from '@mui/material';
+
+import { UserContext } from '../../context/UserContext';
+import { NavBar } from '../../../ui/components/NavBar/NavBar';
 
 import { EnhancedTableHead, EnhancedTableToolbar } from './components'
 
@@ -10,22 +17,35 @@ import { getComparator, stableSort } from './helpers'
 import { useAdminTable } from './hooks/useAdminTable';
 
 
+
 export const Admin = () => {
+  const navigate = useNavigate();
+  const { isAdmin, logOutUser, userData, loged } = useContext(UserContext);
 
   const { order, orderBy, selected, page,
           dense, rowsPerPage, handleRequestSort,
           handleChangeDense, handleSelectAllClick,
           handleChangePage, handleChangeRowsPerPage,
-          handleClick, isSelected, emptyRows, rowsData } = useAdminTable();
+          handleClick, isSelected, emptyRows, rowsData,
+          handleOnDeleteUsers } = useAdminTable();
 
   
   
-
-  { !rowsData && <></> }
+  useEffect(() => {
+    if (!loged) {
+      navigate('/login')
+    } else if (!isAdmin) {
+      navigate('/menuInicial')
+    }
+  }, [loged])
+  
+  { !rowsData && !isAdmin && <></> }
   return (
-    <Box sx={{ width: '100%' }}>
+    <>
+    <NavBar nombreUsuario={userData.nombre} onLogOut={logOutUser} />
+    <Box sx={{ width: '100%', mt: 6 }}>
       <Paper sx={{ width: '100%', mb: 2 }}>
-        <EnhancedTableToolbar numSelected={selected.length} />
+        <EnhancedTableToolbar numSelected={selected.length} onDeleteUsers={ handleOnDeleteUsers } />
         <TableContainer>
           <Table
             sx={{ minWidth: 750 }}
@@ -44,17 +64,17 @@ export const Admin = () => {
               {stableSort(rowsData, getComparator(order, orderBy))
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((row, index) => {
-                  const isItemSelected = isSelected(row.nombre);
+                  const isItemSelected = isSelected(row.cedula);
                   const labelId = `enhanced-table-checkbox-${index}`;
 
                   return (
                     <TableRow
                       hover
-                      onClick={(event) => handleClick(event, row.nombre)}
+                      onClick={(event) => handleClick(event, row.cedula)}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
-                      key={row.nombre}
+                      key={row.cedula}
                       selected={isItemSelected}
                     >
                       <TableCell padding="checkbox">
@@ -106,6 +126,7 @@ export const Admin = () => {
         control={<Switch checked={dense} onChange={handleChangeDense} />}
         label="Dense padding"
       />
-    </Box>
+    </Box>    
+    </>
   );
 }

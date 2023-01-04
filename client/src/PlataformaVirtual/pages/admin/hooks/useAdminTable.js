@@ -22,19 +22,19 @@ export const useAdminTable = () => {
   
     const handleSelectAllClick = (event) => {
       if (event.target.checked) {
-        const newSelected = rowsData.map((n) => n.nombre);
+        const newSelected = rowsData.map((n) => n.cedula);
         setSelected(newSelected);
         return;
       }
       setSelected([]);
     };
   
-    const handleClick = (event, name) => {
-      const selectedIndex = selected.indexOf(name);
+    const handleClick = (event, cedula) => {
+      const selectedIndex = selected.indexOf(cedula);
       let newSelected = [];
   
       if (selectedIndex === -1) {
-        newSelected = newSelected.concat(selected, name);
+        newSelected = newSelected.concat(selected, cedula);
       } else if (selectedIndex === 0) {
         newSelected = newSelected.concat(selected.slice(1));
       } else if (selectedIndex === selected.length - 1) {
@@ -62,7 +62,12 @@ export const useAdminTable = () => {
       setDense(event.target.checked);
     };
   
-    const isSelected = (nombre) => selected.indexOf(nombre) !== -1;
+    //TODO: TODA LA LOGICA PARA ELIMINAR LOS USUARIOS SELECCIONADOS
+    const handleOnDeleteUsers = () => {
+      console.log(selected)
+    }
+    
+    const isSelected = (cedula) => selected.indexOf(cedula) !== -1;
   
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
@@ -72,9 +77,9 @@ export const useAdminTable = () => {
     useEffect(() => {
   
       getUsersData(setRowsData);
-      console.log(rowsData)
       
     }, [])
+
 
     return {
         order,
@@ -90,6 +95,7 @@ export const useAdminTable = () => {
         handleClick,
         isSelected,
         emptyRows,
-        rowsData
+        rowsData,
+        handleOnDeleteUsers
     }
 }

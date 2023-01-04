@@ -9,9 +9,8 @@ import { visuallyHidden } from '@mui/utils';
 
 import { headCells } from '../data'
 
-export const EnhancedTableHead = (props) => {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-      props;
+export const EnhancedTableHead = ({ onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort }) => {
+    
     const createSortHandler = (property) => (event) => {
       onRequestSort(event, property);
     };

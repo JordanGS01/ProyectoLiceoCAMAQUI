@@ -1,17 +1,23 @@
 
 
+import { useState } from 'react';
+
 import PropTypes from 'prop-types';
 
 import { Toolbar, Typography, Tooltip,
          IconButton } from '@mui/material'
-import { Delete, FilterList } from '@mui/icons-material'
+import { Delete, PersonAddAlt } from '@mui/icons-material'
 import { alpha } from '@mui/material/styles';
 
+import { Alert } from '../../../../ui/components/Alert'
 
-export const EnhancedTableToolbar = (props) => {
-    const { numSelected } = props;
-  
+
+export const EnhancedTableToolbar = ({ numSelected, onDeleteUsers }) => {
+    const [openAlert, setOpenAlert] = useState(false);
+
     return (
+      <>
+
       <Toolbar
         sx={{
           pl: { sm: 2 },
@@ -38,24 +44,40 @@ export const EnhancedTableToolbar = (props) => {
             id="tableTitle"
             component="div"
           >
-            Nutrition
+            Usuarios registrados
           </Typography>
         )}
   
         {numSelected > 0 ? (
-          <Tooltip title="Delete">
-            <IconButton>
+          <Tooltip title="Eliminar">
+            <IconButton onClick={ () => { setOpenAlert(true) } }>
               <Delete />
             </IconButton>
           </Tooltip>
         ) : (
-          <Tooltip title="Filter list">
+          <Tooltip title="Añadir profesor">
             <IconButton>
-              <FilterList />
+              <PersonAddAlt />
             </IconButton>
           </Tooltip>
         )}
       </Toolbar>
+
+
+      <Alert 
+            open = { openAlert }
+            handleClose = {() => { setOpenAlert(false) }}
+            title = "¿Está seguro de esta acción?"
+            content = "Todos los usuarios eliminados no podrán volver a ser recuperados ¿Desea continuar?"
+            acceptButtonText = "Sí"
+            acceptButtonFunction = {() => {onDeleteUsers(); setOpenAlert(false)} }
+            closeButtonText = "No"
+            closeButtonFunction = {() => { setOpenAlert(false) }}
+            oneButton = { false }
+
+        />
+
+      </>
     );
 }
 
