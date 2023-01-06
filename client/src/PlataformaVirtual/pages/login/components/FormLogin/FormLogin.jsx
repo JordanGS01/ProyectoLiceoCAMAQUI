@@ -1,6 +1,6 @@
 
 
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import { Box, FormControl, TextField, Button, InputAdornment, IconButton, Typography } from '@mui/material'
@@ -27,10 +27,15 @@ export const FormLogin = () => {
     });
     const { cedula, contra } = formState;
     
-    
-    { loged && (isStudent() || isProfessor()) && navigate('/menuInicial') }
-    { loged && isAdmin() && navigate('/admin') }
 
+    useEffect(() => {
+      if( loged && (isStudent() || isProfessor()) ) {
+        navigate('/menuInicial');
+      } else if (loged && isAdmin()) {
+        navigate('/admin');
+      }
+    }, [loged])
+    
     return (
     <Box
         component="span" 

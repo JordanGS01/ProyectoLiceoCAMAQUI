@@ -2,11 +2,11 @@
     "env": {
       "test": {
         "presets": [
-          "@babel/preset-env",
-          "@babel/preset-react"
+          
+          ["@babel/preset-react", {"runtime": "automatic"}]
         ],
         "plugins": [
-          "transform-export-extensions",
+          "transform-export-extensions"
         ],
         "only": [
           "./**/*.js",

@@ -1,22 +1,19 @@
 
 
-import { useNavigate, Navigate } from 'react-router'
+import { useNavigate } from 'react-router'
 
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box';
 
 import './Botones.css'
-import { useState } from 'react';
+
 
 export const Botones = () => {
-  //const navigate = useNavigate();
-  const [navigatePrematricula, setNavigatePrematricula] = useState(false);
-  const [navigatePV, setNavigatePV] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
       <div class='PP-Botones-Container'>
-
         <Box class="PP-Botones">
 
           <Button 
@@ -29,8 +26,7 @@ export const Botones = () => {
               color: '#FFFFFF'
             }}
 
-            //onClick = { () => { navigate('/prematricula') } }
-            onClick = { () => { setNavigatePrematricula(true) } }
+            onClick = { () => { navigate('/prematricula') } }
           >
             Prematricula en línea
           </Button>
@@ -46,8 +42,7 @@ export const Botones = () => {
               color: '#FFFFFF'
             }}
 
-            //onClick = { () => { navigate('/pv') } }
-            onClick = { () => { setNavigatePV(true) } }
+            onClick = { () => { navigate('/pv') } }
           >
             Plataforma Virtual
           </Button>
@@ -55,8 +50,6 @@ export const Botones = () => {
       </Box>
 
     </div>
-    {navigatePV && <Navigate to='/pv' />}
-    {navigatePrematricula && <Navigate to='/prematricula' />}
     </>
   )
 }
