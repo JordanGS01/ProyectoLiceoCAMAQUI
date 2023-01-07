@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 
 import { getUsersData } from '../data'
+import { deleteUser } from '../helpers'
 
 
 export const useAdminTable = () => {
@@ -62,9 +63,20 @@ export const useAdminTable = () => {
       setDense(event.target.checked);
     };
   
-    //TODO: TODA LA LOGICA PARA ELIMINAR LOS USUARIOS SELECCIONADOS
     const handleOnDeleteUsers = () => {
-      console.log(selected)
+      try {
+        //Se elimina de la base de datos
+        selected.forEach((ced) => {
+          deleteUser(ced);
+        })
+        //Se actualiza el arreglo de usuarios
+        const newData = rowsData.filter( ({cedula}) => !selected.includes(cedula) )
+        setRowsData(newData);
+        setSelected([]);
+        
+      } catch (error) {
+        console.log(error);
+      }  
     }
     
     const isSelected = (cedula) => selected.indexOf(cedula) !== -1;
@@ -86,7 +98,8 @@ export const useAdminTable = () => {
         orderBy,
         selected,
         page,
-        dense,rowsPerPage,
+        dense,
+        rowsPerPage,
         handleRequestSort,
         handleChangeDense,
         handleSelectAllClick,

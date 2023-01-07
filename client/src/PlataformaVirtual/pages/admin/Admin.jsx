@@ -38,6 +38,11 @@ export const Admin = () => {
       navigate('/menuInicial')
     }
   }, [loged])
+
+  useEffect(() => {
+      
+  }, [rowsData])
+  
   
   { !rowsData && !isAdmin && <></> }
   return (
