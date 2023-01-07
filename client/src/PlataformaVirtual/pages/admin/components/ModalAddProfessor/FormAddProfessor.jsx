@@ -40,7 +40,7 @@ export const FormAddProfessor = ({ onCloseModal }) => {
     <form onSubmit={ (e) => { onFormSubmit( e, formState, setWarnings, setOpenAlertSuccess, setOpenAlertError ) } }>
 
         <Typography variant="h3" gutterBottom sx={{ ml: 2, color: '#FFFFFF' }}>
-            Registrarse
+            Agregar profesor
         </Typography>
         
         {/* Sección de nombre completo */}

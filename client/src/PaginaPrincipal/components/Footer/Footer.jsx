@@ -8,7 +8,7 @@ import './Footer.css'
 
 export const Footer = () => {
     return (
-        <footer>
+        <footer data-testid='footer-test'>
             <Box 
                 sx={{ background: '#4C87A8', color: 'white' }}
                 px={{ xs: 3, sm: 10 }}
@@ -61,7 +61,7 @@ export const Footer = () => {
                                     <p>2477-5898</p>
                                 </Link>
 
-                                <Link href='https://www.facebook.com/CAMAQUI2002' class='phone'>
+                                <Link href='https://www.facebook.com/CAMAQUI2002' class='PaginaPrincipal-Footer-Phone'>
                                     <Facebook sx={{ color: 'white', marginRight: '2%' }} />
                                     <p>Facebook</p>
                                 </Link>

@@ -4,7 +4,7 @@ import './Informacion.css'
 
 export const Informacion = ({ titulo, contenido, id }) => {
   return (
-      <Box 
+      <Box data-testid='informacion-test'
         sx = {{ 
           background: '#D9D9D9',
           height: '100%',
@@ -19,7 +19,6 @@ export const Informacion = ({ titulo, contenido, id }) => {
         <p className = "PaginaPrincipal-Informacion-Parrafo">
           { contenido }
         </p>
-
       </Box>
   )
 }

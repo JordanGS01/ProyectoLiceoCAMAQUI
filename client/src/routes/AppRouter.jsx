@@ -13,13 +13,10 @@ export const AppRouter = () => {
     <>
     <UserProvider>
       <Routes>
-
           <Route path='paginaPrincipal' element={ <PaginaPrincipal /> }/>
           <Route path='pv' element={ <PlataformaVirtualRouter /> }/>
           <Route path='prematricula' element={ <Prematricula /> }/>
-
           <Route path='/*' element={ <PlataformaVirtualRouter /> }/>
-          
       </Routes>
     </UserProvider>
     </>
