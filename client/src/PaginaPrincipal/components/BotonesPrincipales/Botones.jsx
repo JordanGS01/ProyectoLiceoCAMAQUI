@@ -15,9 +15,9 @@ export const Botones = () => {
 
   return (
     <>
-      <div class='PP-Botones-Container'>
+      <div className='PP-Botones-Container'>
 
-        <Box class="PP-Botones">
+        <Box className="PP-Botones">
 
           <Button 
             sx={{
