@@ -9,11 +9,13 @@ import { Toolbar, Typography, Tooltip,
 import { Delete, PersonAddAlt } from '@mui/icons-material'
 import { alpha } from '@mui/material/styles';
 
+import { ModalAddProfesor } from './ModalAddProfessor';
 import { Alert } from '../../../../ui/components/Alert'
 
 
 export const EnhancedTableToolbar = ({ numSelected, onDeleteUsers }) => {
     const [openAlert, setOpenAlert] = useState(false);
+    const [openModal, setOpenModal] = useState(false);
 
     return (
       <>
@@ -56,7 +58,7 @@ export const EnhancedTableToolbar = ({ numSelected, onDeleteUsers }) => {
           </Tooltip>
         ) : (
           <Tooltip title="Añadir profesor">
-            <IconButton>
+            <IconButton onClick={ () => { setOpenModal(true) } }>
               <PersonAddAlt />
             </IconButton>
           </Tooltip>
@@ -74,8 +76,12 @@ export const EnhancedTableToolbar = ({ numSelected, onDeleteUsers }) => {
             closeButtonText = "No"
             closeButtonFunction = {() => { setOpenAlert(false) }}
             oneButton = { false }
-
         />
+
+      <ModalAddProfesor
+        open = {openModal}
+        onCloseModal = { () => { setOpenModal(false) } }
+      />
 
       </>
     );

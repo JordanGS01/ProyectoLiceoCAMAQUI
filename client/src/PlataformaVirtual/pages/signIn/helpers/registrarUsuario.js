@@ -81,11 +81,11 @@ const validarDatos = ( nombre, cedula, contra, repContra, setWarnings ) => {
 
 }
 
-const registrarUsuario = ( nombre, cedula, contra, setOpenSuccessAlert, setOpenErrorAlert ) => {
+const registrarUsuario = ( nombre, cedula, contra, tipo, setOpenSuccessAlert, setOpenErrorAlert ) => {
     axios.post('http://localhost:3300/users', {
         cedula,
         nombre,
-        tipo: 'E',
+        tipo,
         contra
     }).then(( response ) => {
         setOpenSuccessAlert(true);
@@ -96,14 +96,14 @@ const registrarUsuario = ( nombre, cedula, contra, setOpenSuccessAlert, setOpenE
     })
 }
 
-export const onFormSubmit = ( e, { nombre, cedula, contra, repContra }, setWarnings, setOpenSuccessAlert, setOpenErrorAlert ) => {
+export const onFormSubmit = ( e, { nombre, cedula, contra, repContra, tipo }, setWarnings, setOpenSuccessAlert, setOpenErrorAlert ) => {
     
     e.preventDefault();
     
     const noHayErrores = validarDatos(nombre, cedula, contra, repContra, setWarnings);
 
     if ( noHayErrores ) {
-        registrarUsuario( nombre, cedula, contra, setOpenSuccessAlert, setOpenErrorAlert );
+        registrarUsuario( nombre, cedula, contra, tipo, setOpenSuccessAlert, setOpenErrorAlert );
     }
 }
 

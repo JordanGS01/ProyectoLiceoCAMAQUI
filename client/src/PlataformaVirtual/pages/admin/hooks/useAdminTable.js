@@ -73,7 +73,7 @@ export const useAdminTable = () => {
         const newData = rowsData.filter( ({cedula}) => !selected.includes(cedula) )
         setRowsData(newData);
         setSelected([]);
-        
+
       } catch (error) {
         console.log(error);
       }  

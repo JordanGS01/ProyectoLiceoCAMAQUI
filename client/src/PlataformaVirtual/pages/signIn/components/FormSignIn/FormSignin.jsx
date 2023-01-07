@@ -31,7 +31,8 @@ export const FormSignin = () => {
         nombre: '',
         cedula: '',
         contra: '',
-        repContra: ''
+        repContra: '',
+        tipo: 'E'
     });
     const { nombre, cedula, contra, repContra } = formState;
     const { nombreInvalido, cedulaInvalida, contraInvalida, contraNoCoincide } = warnings;
@@ -184,7 +185,6 @@ export const FormSignin = () => {
 
             </FormControl>
             
-            {/* INCOMPLETO */}
             {/* Sección de la botones */}
             <div className='FormSignin-ContenedorBotones'>
 
