@@ -121,6 +121,12 @@ describe('Pruebas sobre el componente <FormLogin />', () => {
         expect(screen.getByText('Las contraseñas no coinciden')).toBeTruthy();
     })
 
+    test('El botón "Regresar" redirecciona al Login', () => { 
+        const botonRegresar = screen.getByRole('button', { name: 'Regresar' });
+
+        expect(fireEvent.click(botonRegresar)).toBeTruthy();
+    })
+
 
     afterEach(() => {
         cleanup();

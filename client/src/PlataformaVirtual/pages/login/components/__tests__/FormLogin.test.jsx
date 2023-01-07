@@ -70,6 +70,12 @@ describe('Pruebas sobre el componente <FormLogin />', () => {
         expect(screen.getByRole('textbox', { name: 'Contraseña' })).toBeTruthy();
     })
 
+    test('El botón "Registrarse" redirecciona al SignIn', () => { 
+        const botonRegistrarse = screen.getByRole('button', { name: 'Registrarse' });
+
+        expect(fireEvent.click(botonRegistrarse)).toBeTruthy();
+    })
+
 
     afterEach(() => {
         cleanup();
