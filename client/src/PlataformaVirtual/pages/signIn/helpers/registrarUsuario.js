@@ -3,7 +3,7 @@
 import axios from "axios";
 
 // Se encarga de validar, mediante expresiones regulares, que el nombre del usuario cumpla los requisitos
-const validarNombre = ( nombre ) => {
+export const validarNombre = ( nombre ) => {
     
     const nombreValidoRegex = /^[a-zA-Z\S*\s]+$/;
     const nombreSinNumerosRegex = /^([^0-9]*)$/;
@@ -21,7 +21,7 @@ const validarNombre = ( nombre ) => {
 }
 
 // Se encarga de validar, mediante expresiones regulares, que la cedula del usuario cumpla los requisitos
-const validarCedula = ( cedula ) => {
+export const validarCedula = ( cedula ) => {
     
     const cedulaValidaRegex = /^[1-9][0-9]{8}$/;
 
@@ -35,7 +35,7 @@ const validarCedula = ( cedula ) => {
 }
 
 // Se valida el largo de la contraseña
-const validarLargoContra = ( contra ) => {
+export const validarLargoContra = ( contra ) => {
 
     const contraValidaRegex = /^[a-zA-Z\S*\s]{6,30}$/;
 
@@ -49,7 +49,7 @@ const validarLargoContra = ( contra ) => {
 }
 
 // Se valida la confirmación de contraseña
-const validarIgualdadContras = ( contra, repContra ) => {
+export const validarIgualdadContras = ( contra, repContra ) => {
     
     if ( contra !== repContra ) {
         return false;

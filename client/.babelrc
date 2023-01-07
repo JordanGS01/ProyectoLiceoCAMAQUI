@@ -1,17 +1,16 @@
 {
-    "env": {
-      "test": {
-        "presets": [
-          
-          ["@babel/preset-react", {"runtime": "automatic"}]
-        ],
-        "plugins": [
-          "transform-export-extensions"
-        ],
-        "only": [
-          "./**/*.js",
-          "node_modules/jest-runtime"
-        ]
-      }
+  "env": {
+    "test": {
+      "presets": [
+        ["@babel/preset-react", {"runtime": "automatic"}]
+      ],
+      "plugins": [
+        "transform-export-extensions"
+      ],
+      "only": [
+        "./**/*.js",
+        "node_modules/jest-runtime"
+      ]
     }
   }
+}

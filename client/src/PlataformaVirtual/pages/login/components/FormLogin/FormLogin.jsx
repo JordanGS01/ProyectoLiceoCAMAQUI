@@ -71,6 +71,7 @@ export const FormLogin = () => {
                     sx={{ backgroundColor: '#FFFDFD', borderRadius: '5px' }}
                     variant='filled'
                     type='number'
+                    aria-label='cedula'
 
                     value={ cedula }
                     name='cedula'
@@ -105,6 +106,7 @@ export const FormLogin = () => {
                     }}
                     sx={{ backgroundColor: '#FFFDFD', borderRadius: '5px' }}
                     variant='filled'
+                    aria-label='contra'
 
                     value={ contra }
                     name='contra'
