@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "326e4d84-ef6a-4343-8b81-4655739d4eb3",
-		"name": "TODOs APIs",
+		"_postman_id": "1a34167a-9a88-4162-99f5-baf453113d3a",
+		"name": "News APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Add TODO",
+			"name": "Add New",
 			"event": [
 				{
 					"listen": "test",
@@ -18,8 +18,8 @@
 							"\r",
 							"const response = pm.response.json();\r",
 							"\r",
-							"pm.test(\"El todo debe agregarse correctamente\", () => {\r",
-							"    pm.expect(response.message).to.equal(\"Creado correctamente\");\r",
+							"pm.test(\"La noticia debe agregarse correctamente\", () => {\r",
+							"    pm.expect(response.message).to.equal(\"Creada correctamente\");\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cedula\":{{cedulaUsuario}},\r\n    \"titulo\":\"Prueba - Agregar TODO\",\r\n    \"contenido\": \"Esta es una prueba para verificar si funciona el agregar un TODO\"\r\n}",
+					"raw": "{\r\n    \"idGrupo\":\"{{idGrupo}}\",\r\n    \"titulo\":\"Prueba - Agregar Noticia\",\r\n    \"contenido\": \"Esta es una prueba para verificar si funciona el agregar una noticia\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -39,19 +39,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{currentUrl}}/tareas",
+					"raw": "{{currentUrl}}/noticias",
 					"host": [
 						"{{currentUrl}}"
 					],
 					"path": [
-						"tareas"
+						"noticias"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get user TODOs",
+			"name": "Get group news",
 			"event": [
 				{
 					"listen": "test",
@@ -88,18 +88,18 @@
 					}
 				},
 				"url": {
-					"raw": "{{currentUrl}}/tareas/:ced",
+					"raw": "{{currentUrl}}/noticias/:idGrupo",
 					"host": [
 						"{{currentUrl}}"
 					],
 					"path": [
-						"tareas",
-						":ced"
+						"noticias",
+						":idGrupo"
 					],
 					"variable": [
 						{
-							"key": "ced",
-							"value": "{{cedulaUsuario}}"
+							"key": "idGrupo",
+							"value": "{{idGrupo}}"
 						}
 					]
 				}
@@ -107,7 +107,7 @@
 			"response": []
 		},
 		{
-			"name": "Modify TODO",
+			"name": "Modify new",
 			"event": [
 				{
 					"listen": "test",
@@ -121,7 +121,7 @@
 							"\r",
 							"pm.test(\"Debe retornar una variable modified con valor true\", () => {\r",
 							"    const { message } = response;\r",
-							"    pm.expect(message).to.equal(\"Modificado correctamente\");\r",
+							"    pm.expect(message).to.equal(\"Modificada correctamente\");\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -133,7 +133,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cedula\":{{cedulaUsuario}},\r\n    \"id\":4,\r\n    \"titulo\": \"Prueba modificacion\",\r\n    \"contenido\": \"El todo se modificó correctamente\"\r\n}",
+					"raw": "{\r\n    \"idGrupo\": \"{{idGrupo}}\",\r\n    \"idNoticia\": 1,\r\n    \"titulo\": \"Prueba modificacion\",\r\n    \"contenido\": \"La noticia se modificó correctamente\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -141,19 +141,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{currentUrl}}/tareas",
+					"raw": "{{currentUrl}}/noticias",
 					"host": [
 						"{{currentUrl}}"
 					],
 					"path": [
-						"tareas"
+						"noticias"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Delete TODO",
+			"name": "Delete new",
 			"event": [
 				{
 					"listen": "test",
@@ -181,18 +181,18 @@
 					}
 				},
 				"url": {
-					"raw": "{{currentUrl}}/tareas/:id",
+					"raw": "{{currentUrl}}/noticias/:id",
 					"host": [
 						"{{currentUrl}}"
 					],
 					"path": [
-						"tareas",
+						"noticias",
 						":id"
 					],
 					"variable": [
 						{
 							"key": "id",
-							"value": "8"
+							"value": "5"
 						}
 					]
 				}
@@ -202,12 +202,12 @@
 	],
 	"variable": [
 		{
-			"key": "currentUrl",
-			"value": "http://localhost:3300"
+			"key": "idGrupo",
+			"value": "GRUPO85214"
 		},
 		{
-			"key": "cedulaUsuario",
-			"value": "208140251"
+			"key": "currentUrl",
+			"value": "http://localhost:3300"
 		}
 	]
 }
