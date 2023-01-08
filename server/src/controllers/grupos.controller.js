@@ -73,7 +73,7 @@ const addStudentToGroup = async (req, res, next) => {
             if ( agregar_usuario_a_grupo ) {
                 res.json({
                     status: "OK",
-                    message: "Agregado correctamente"
+                    message: "Usuario agregado correctamente"
                 });
             } else {
                 res.json({
@@ -101,7 +101,7 @@ const deleteGroup = async (req, res, next) => {
         //En caso de que no se encuentre el usuario que se quiere eliminar
         if (result.rowCount === 0){
             return res.status(404).json({
-                message: "El usuario no fue encontrado"
+                message: "El grupo no fue encontrado"
             });
         }
 
