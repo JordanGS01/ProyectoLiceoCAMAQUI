@@ -1,0 +1,213 @@
+{
+	"info": {
+		"_postman_id": "326e4d84-ef6a-4343-8b81-4655739d4eb3",
+		"name": "TODOs APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add TODO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"El grupo debe agregarse correctamente\", () => {\r",
+							"    pm.expect(response.message).to.equal(\"Creado correctamente\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cedula\":{{cedulaUsuario}},\r\n    \"titulo\":\"Prueba - Agregar TODO\",\r\n    \"contenido\": \"Esta es una prueba para verificar si funciona el agregar un TODO\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/tareas",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user TODOs",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Se obtiene un arrego de datos\", () => {\r",
+							"    const { data } = response;\r",
+							"    pm.expect(data).to.be.an('array');\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/tareas/:ced",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"tareas",
+						":ced"
+					],
+					"variable": [
+						{
+							"key": "ced",
+							"value": "{{cedulaUsuario}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify TODO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Debe retornar una variable modified con valor true\", () => {\r",
+							"    const { message } = response;\r",
+							"    pm.expect(message).to.equal(\"Modificado correctamente\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cedula\":{{cedulaUsuario}},\r\n    \"id\":4,\r\n    \"titulo\": \"Prueba modificacion\",\r\n    \"contenido\": \"El todo se modificó correctamente\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/tareas",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"tareas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete TODO",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/tareas/:id",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"tareas",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "6"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "currentUrl",
+			"value": "http://localhost:3300"
+		},
+		{
+			"key": "cedulaUsuario",
+			"value": "208140251"
+		}
+	]
+}

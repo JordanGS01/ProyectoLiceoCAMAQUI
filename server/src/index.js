@@ -5,6 +5,7 @@ const cors = require('cors');
 //Routes imports
 const userRouter = require('./routes/users.routes');
 const groupRouter = require('./routes/grupos.routes');
+const todosRouter = require('./routes/tareas.routes');
 
 //Inicialización de la app
 const app = express();
@@ -23,6 +24,7 @@ app.use(express.json());
 ///// ROUTES \\\\\
 app.use(userRouter);
 app.use(groupRouter);
+app.use(todosRouter);
 
 ///// HANDLING ERRORS \\\\\
 app.use((err, req, res, next) => {
