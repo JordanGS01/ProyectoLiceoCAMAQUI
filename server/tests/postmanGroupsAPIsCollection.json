@@ -1,0 +1,265 @@
+{
+	"info": {
+		"_postman_id": "8cfc1034-7c49-445c-add7-bf8513e68966",
+		"name": "Groups APIs",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"El grupo debe agregarse correctamente\", () => {\r",
+							"    pm.expect(response.message).to.equal(\"Agregado correctamente\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"{{codigoGrupo}}\",\r\n    \"nombre\":\"Prueba de creacion de grupos\",\r\n    \"cedulaProfesor\": {{cedulaProfesor}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/grupo",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"grupo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add student to group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"El usuario debe agregarse correctamente al grupo\", () => {\r",
+							"    pm.expect(response.message).to.equal(\"Usuario agregado correctamente\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"{{codigoGrupo}}\",\r\n    \"cedula\": {{cedulaEstudiante}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/agregarAlGrupo",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"agregarAlGrupo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user groups",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"Se obtiene un arrego de datos\", () => {\r",
+							"    const { data } = response;\r",
+							"    pm.expect(data).to.be.an('array');\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/grupo/:ced",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"grupo",
+						":ced"
+					],
+					"variable": [
+						{
+							"key": "ced",
+							"value": "{{cedulaProfesor}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user from group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"const response = pm.response.json();\r",
+							"\r",
+							"pm.test(\"El usuario debe eliminarse del grupo correctamente\", () => {\r",
+							"    pm.expect(response.message).to.equal(\"Eliminado correctamente\");\r",
+							"})"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\":\"{{codigoGrupo}}\",\r\n    \"cedula\":{{cedulaEstudiante}}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/eliminarDeGrupo",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"eliminarDeGrupo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete group",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{currentUrl}}/grupo/:id",
+					"host": [
+						"{{currentUrl}}"
+					],
+					"path": [
+						"grupo",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "{{codigoGrupo}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "codigoGrupo",
+			"value": "ASDFG12345"
+		},
+		{
+			"key": "cedulaProfesor",
+			"value": "208140999"
+		},
+		{
+			"key": "cedulaEstudiante",
+			"value": "208140251"
+		},
+		{
+			"key": "currentUrl",
+			"value": "http://localhost:3300"
+		}
+	]
+}
