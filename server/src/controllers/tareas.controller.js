@@ -102,7 +102,7 @@ const deleteTodo = async (req, res, next) => {
         //En caso de que no se encuentre el usuario que se quiere eliminar
         if (result.rowCount === 0){
             return res.status(404).json({
-                message: "El grupo no fue encontrado"
+                message: "El TODO no fue encontrado"
             });
         }
 

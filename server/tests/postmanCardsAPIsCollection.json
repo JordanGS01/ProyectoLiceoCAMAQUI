@@ -1,12 +1,12 @@
 {
 	"info": {
-		"_postman_id": "326e4d84-ef6a-4343-8b81-4655739d4eb3",
-		"name": "TODOs APIs",
+		"_postman_id": "ad7167e5-ed3d-438d-b535-6dc3000ff88e",
+		"name": "Cards APIs",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "Add TODO",
+			"name": "Add card",
 			"event": [
 				{
 					"listen": "test",
@@ -18,8 +18,8 @@
 							"\r",
 							"const response = pm.response.json();\r",
 							"\r",
-							"pm.test(\"El todo debe agregarse correctamente\", () => {\r",
-							"    pm.expect(response.message).to.equal(\"Creado correctamente\");\r",
+							"pm.test(\"La carta de aprendizaje debe agregarse correctamente\", () => {\r",
+							"    pm.expect(response.message).to.equal(\"Creada correctamente\");\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -31,7 +31,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cedula\":{{cedulaUsuario}},\r\n    \"titulo\":\"Prueba - Agregar TODO\",\r\n    \"contenido\": \"Esta es una prueba para verificar si funciona el agregar un TODO\"\r\n}",
+					"raw": "{\r\n    \"idGrupo\":\"{{idGrupo}}\",\r\n    \"cedula\": 208140251,\r\n    \"pregunta\":\"¿Se agregó la pregunta correctamente?\",\r\n    \"respuesta\": \"En efecto, se agregó\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -39,19 +39,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{currentUrl}}/tareas",
+					"raw": "{{currentUrl}}/cartasAprendizaje",
 					"host": [
 						"{{currentUrl}}"
 					],
 					"path": [
-						"tareas"
+						"cartasAprendizaje"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get user TODOs",
+			"name": "Get user cards",
 			"event": [
 				{
 					"listen": "test",
@@ -80,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "",
+					"raw": "{\r\n    \"idGrupo\": \"{{idGrupo}}\",\r\n    \"cedula\": 208140251\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -88,26 +88,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{currentUrl}}/tareas/:ced",
+					"raw": "{{currentUrl}}/cartasAprendizaje",
 					"host": [
 						"{{currentUrl}}"
 					],
 					"path": [
-						"tareas",
-						":ced"
-					],
-					"variable": [
-						{
-							"key": "ced",
-							"value": "{{cedulaUsuario}}"
-						}
+						"cartasAprendizaje"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Modify TODO",
+			"name": "Modify card",
 			"event": [
 				{
 					"listen": "test",
@@ -121,7 +114,7 @@
 							"\r",
 							"pm.test(\"Debe retornar una variable modified con valor true\", () => {\r",
 							"    const { message } = response;\r",
-							"    pm.expect(message).to.equal(\"Modificado correctamente\");\r",
+							"    pm.expect(message).to.equal(\"Modificada correctamente\");\r",
 							"})"
 						],
 						"type": "text/javascript"
@@ -133,7 +126,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"cedula\":{{cedulaUsuario}},\r\n    \"id\":4,\r\n    \"titulo\": \"Prueba modificacion\",\r\n    \"contenido\": \"El todo se modificó correctamente\"\r\n}",
+					"raw": "{\r\n    \"idCard\":3,\r\n    \"idGrupo\": \"{{idGrupo}}\",\r\n    \"cedula\": 208140251,\r\n    \"pregunta\": \"¿Pudimos modificar correctamente?\",\r\n    \"respuesta\": \"Yes my friend\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -141,19 +134,19 @@
 					}
 				},
 				"url": {
-					"raw": "{{currentUrl}}/tareas",
+					"raw": "{{currentUrl}}/cartasAprendizaje",
 					"host": [
 						"{{currentUrl}}"
 					],
 					"path": [
-						"tareas"
+						"cartasAprendizaje"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Delete TODO",
+			"name": "Delete card",
 			"event": [
 				{
 					"listen": "test",
@@ -181,18 +174,18 @@
 					}
 				},
 				"url": {
-					"raw": "{{currentUrl}}/tareas/:id",
+					"raw": "{{currentUrl}}/cartasAprendizaje/:id",
 					"host": [
 						"{{currentUrl}}"
 					],
 					"path": [
-						"tareas",
+						"cartasAprendizaje",
 						":id"
 					],
 					"variable": [
 						{
 							"key": "id",
-							"value": "8"
+							"value": "5"
 						}
 					]
 				}
@@ -206,8 +199,8 @@
 			"value": "http://localhost:3300"
 		},
 		{
-			"key": "cedulaUsuario",
-			"value": "208140251"
+			"key": "idGrupo",
+			"value": "ASDFG12345"
 		}
 	]
 }

@@ -3,13 +3,13 @@
 const pool = require('../connection')
 
 
-const getUserCards = async (req, res, next) => {
+const getGroupNews = async (req, res, next) => {
     try {
-        const { idGrupo, cedula } = req.body;
+        const { idGrupo } = req.params;
         await pool.query
         (
-            "SELECT * FROM cartas_aprendizaje WHERE id_grupo=$1 AND cedula_usuario=$2", 
-            [idGrupo, cedula]
+            "SELECT * FROM noticias WHERE id_grupo=$1", 
+            [idGrupo]
         ).then((answer) => {
             res.json({
                 status: 'OK',
@@ -26,18 +26,18 @@ const getUserCards = async (req, res, next) => {
     }
 }
 
-const addCard = async (req, res, next) => {
-    const { idGrupo, cedula, pregunta, respuesta } = req.body;
+const addNew = async (req, res, next) => {
+    const { idGrupo, titulo, contenido } = req.body;
     
     try {
         await pool.query
         (
-            "SELECT create_carta_apredizaje($1,$2,$3,$4)",
-            [idGrupo, cedula, pregunta, respuesta]
+            "SELECT create_noticia($1,$2,$3)",
+            [idGrupo, titulo, contenido]
         ).then((answer) => {
-            const { create_carta_apredizaje } = answer.rows[0];
+            const { create_noticia } = answer.rows[0];
             
-            if ( create_carta_apredizaje ) {
+            if ( create_noticia ) {
                 res.json({
                     status: "OK",
                     message: "Creada correctamente"
@@ -45,7 +45,7 @@ const addCard = async (req, res, next) => {
             } else {
                 res.json({
                     status: "Fail",
-                    message: "El usuario no existe en el grupo referenciado"
+                    message: "No existe un grupo con el código ingresado"
                 });
             }
 
@@ -60,18 +60,18 @@ const addCard = async (req, res, next) => {
     }
 }
 
-const modifyCard = async (req, res, next) => {
-    const { idCard, idGrupo, cedula, pregunta, respuesta } = req.body;
+const modifyNew = async (req, res, next) => {
+    const { idGrupo, idNoticia, titulo, contenido } = req.body;
 
     try {
         await pool.query
         (
-            "SELECT modificar_carta_aprendizaje($1,$2,$3,$4,$5)",
-            [idCard, idGrupo, cedula, pregunta, respuesta]
+            "SELECT modificar_noticia($1,$2,$3,$4)",
+            [idGrupo, idNoticia, titulo, contenido]
         ).then((answer) => {
-            const { modificar_carta_aprendizaje } = answer.rows[0];
+            const { modificar_noticia } = answer.rows[0];
             
-            if ( modificar_carta_aprendizaje ) {
+            if ( modificar_noticia ) {
                 res.json({
                     status: "OK",
                     message: "Modificada correctamente"
@@ -94,10 +94,10 @@ const modifyCard = async (req, res, next) => {
     }
 }
 
-const deleteCard = async (req, res, next) => {
+const deleteNew = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const result = await pool.query('DELETE FROM cartas_aprendizaje WHERE id=$1', [id]);
+        const result = await pool.query('DELETE FROM noticias WHERE id=$1', [id]);
         
         //En caso de que no se encuentre el usuario que se quiere eliminar
         if (result.rowCount === 0){
@@ -115,8 +115,8 @@ const deleteCard = async (req, res, next) => {
 
 
 module.exports = {
-    getUserCards,
-    addCard,
-    modifyCard,
-    deleteCard
+    getGroupNews,
+    addNew,
+    modifyNew,
+    deleteNew
 }
