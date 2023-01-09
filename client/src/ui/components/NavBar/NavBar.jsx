@@ -12,7 +12,7 @@ export const NavBar = ({ nombreUsuario, onLogOut }) => {
         <img className='NavBar-Logo' src={Logo} alt="Logo del colegio" />
 
         <div className='NavBar-ButonsContainer'>
-            <Typography variant="h6" component="div" sx={{ flexGrow: 1, mr: 3 }}>
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1, mr: 4 }}>
                 { nombreUsuario }
             </Typography>
             <IconButton
