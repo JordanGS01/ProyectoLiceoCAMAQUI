@@ -8,6 +8,7 @@ const groupRouter = require('./routes/grupos.routes');
 const todosRouter = require('./routes/tareas.routes');
 const noticiasRouter = require('./routes/noticias.routes');
 const cartasAprendizajeRouter = require('./routes/cartasAprendizaje.routes');
+const apuntesRouter = require('./routes/apuntes.routes');
 
 //Inicialización de la app
 const app = express();
@@ -29,6 +30,7 @@ app.use(groupRouter);
 app.use(todosRouter);
 app.use(noticiasRouter);
 app.use(cartasAprendizajeRouter);
+app.use(apuntesRouter);
 
 ///// HANDLING ERRORS \\\\\
 app.use((err, req, res, next) => {
