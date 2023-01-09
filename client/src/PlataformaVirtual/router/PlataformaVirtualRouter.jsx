@@ -1,9 +1,8 @@
 
 
 import { Routes, Route, Navigate } from 'react-router-dom'
-
 import { Admin } from '../pages/admin/Admin'
-import { Apuntes } from '../pages/apuntes/Apuntes'
+import { Apuntes } from '../pages/menuInicial/components/Apuntes/Apuntes'
 import { CartasAprendizaje } from '../pages/cartasAprendizaje/CartasAprendizaje'
 import { Documentos } from '../pages/documentos/Documentos'
 import { LogIn } from '../pages/login/LogIn'
@@ -16,7 +15,6 @@ export const PlataformaVirtualRouter = () => {
   return (
     <>
     <Routes>
-
         <Route path='admin' element={ <Admin /> }/>
         <Route path='apuntes' element={ <Apuntes /> }/>
         <Route path='cartasAprendizaje' element={ <CartasAprendizaje /> }/>
@@ -25,8 +23,7 @@ export const PlataformaVirtualRouter = () => {
         <Route path='menuCurso' element={ <MenuCurso /> }/>
         <Route path='menuInicial' element={ <MenuInicial /> }/>
         <Route path='signIn' element={ <SignIn /> }/>
-      
-        <Route path='/*' element={ <Navigate to='/login' /> }/>
+        <Route path='/' element={ <Navigate to='/login' /> }/>
     </Routes>
     </>
   )
