@@ -11,14 +11,24 @@ import { stylesBoxModal, stylesTitleModal } from './ClasesSxModal'
 import './ModalVisualizacion.css'
 
 
-export const ModalVisualizacion = ({ open, handleClose, titulo, botonesActivos, funcionesBotones, idObj, tituloObj ,contenidoObj, onSubmitForm }) => {
+export const ModalVisualizacion = ({ 
+        open, 
+        handleClose, 
+        titulo, 
+        botonesActivos, 
+        funcionesBotones, 
+        idObj, 
+        tituloObj,
+        contenidoObj,
+        onSubmitForm,
+    }) => {
+
     const { formState, onInputChange, onResetForm } = useForm({
         id: idObj,
         tituloF: tituloObj,
         contenido: contenidoObj
     })
     const { tituloF, contenido } = formState;
-
 
     const handleOnSubmit = (e) => {
         e.preventDefault();

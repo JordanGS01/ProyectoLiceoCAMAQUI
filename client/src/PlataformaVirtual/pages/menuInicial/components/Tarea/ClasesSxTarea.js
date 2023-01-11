@@ -7,5 +7,9 @@ export const stylesBoxContenedor = {
     display: 'flex',
     alignItems: 'center',
     justifyContent:'center',
-    borderRadius:'5px'
+    borderRadius:'5px',
+    ':hover': {
+        cursor: 'pointer',
+        backgroundColor: '#A0B1BAC0'
+    }
 }

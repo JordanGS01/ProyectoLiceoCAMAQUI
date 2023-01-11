@@ -24,16 +24,11 @@ export const Tareas = () => {
     const [openModal, setOpenModal] = useState(false);
     const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
     const [openAlertError, setOpenAlertError] = useState(false);
-
-    useEffect(() => {
-        const userData = getUserData();
-        getAllTodos(userData, setTodos);
-    }, [openAlertSuccess])//Para que los todos se refresquen siempre que se agregue uno nuevo
-
-    { (!todos || todos === undefined) && <></> }
+    const [changed, setChanged] = useState(false);
 
     const onOpenModal = () => setOpenModal(true);
     const onCloseModal = () => setOpenModal(false);
+    const onChanged = () => setChanged(!changed);
 
     const onCreatedTODO = () => {
         setOpenAlertSuccess(false);
@@ -45,6 +40,14 @@ export const Tareas = () => {
         addTodo( cedula, formState, setOpenAlertSuccess, setOpenAlertError );
         onResetForm();
     }
+
+    useEffect(() => {
+        const userData = getUserData();
+        getAllTodos(userData, setTodos);
+    }, [openAlertSuccess, changed])//Para que los todos se refresquen siempre que se agregue uno nuevo
+
+    { (!todos || todos === undefined) && <></> }
+
 
     return (
         <>
@@ -67,13 +70,14 @@ export const Tareas = () => {
             </div>
 
             <Box sx={stylesBoxTareas}>
-                {todos.map(({ id, cedula, contenido, titulo }) => (
+                {todos.map(({ id, cedula_usuario, contenido, titulo }) => (
                     <Tarea 
                         key = {id}
                         id = {id}
-                        cedula = {cedula}
+                        cedula = {cedula_usuario}
                         contenido = {contenido}
                         titulo = {titulo}
+                        onChanged = {onChanged}
                     />
                 ))}
             </Box>
@@ -96,7 +100,7 @@ export const Tareas = () => {
             onSubmitForm={onAddTarea}
         />
 
-        {/* Alert que se mostrará cuando el registro se culmine exitosamente */}
+        {/* Alert que se mostrará cuando se cree la tarea correctamente */}
         <Alert 
             open = { openAlertSuccess }
             handleClose = {() => { setOpenAlertSuccess(false) }}
@@ -107,8 +111,7 @@ export const Tareas = () => {
             oneButton = { true }
         />
         
-        {/* Alert que se mostrará cuando no se pueda registrar el usuario porque ya 
-            existe otro usuario con el número de cédula ingresado */}
+        {/* Alert que se mostrará cuando suceda algún error */}
         <Alert 
             open = { openAlertError }
             handleClose = {() => { setOpenAlertError(false) }}
