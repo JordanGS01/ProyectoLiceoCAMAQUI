@@ -1,39 +1,127 @@
-import React from 'react'
 
-import { Box } from '@mui/system'
+
+import { useState, useContext, useEffect } from 'react'
+
+import { UserContext } from '../../../../context/UserContext'
+
+import { Button, Box } from '@mui/material'
+
+import { ModalVisualizacion, Alert } from '../../../../../ui'
 
 import { Tarea } from '../Tarea/Tarea'
 
-import Button from '@mui/material/Button'
+import { stylesBoxContenedorPrincipal, stylesBoxBoton,
+         stylesBoxTareas, stylesBotonAgregar } from './ClasesSxTareas'
+import './Tareas.css'
+
+import { getAllTodos, addTodo } from '../../helpers'
+
 
 export const Tareas = () => {
+    const { getUserData } = useContext(UserContext);
+    
+    const [todos, setTodos] = useState([]);
+    const [openModal, setOpenModal] = useState(false);
+    const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
+    const [openAlertError, setOpenAlertError] = useState(false);
+    const [changed, setChanged] = useState(false);
 
+    const onOpenModal = () => setOpenModal(true);
+    const onCloseModal = () => setOpenModal(false);
+    const onChanged = () => setChanged(!changed);
 
-    const Tareas = []
+    const onCreatedTODO = () => {
+        setOpenAlertSuccess(false);
+        setOpenModal(false);
+    }
 
-    Tareas.push('HACER LA COCINA')
-    Tareas.push('HACER LA COCINA')
-    Tareas.push('HACER LA COCINA')
+    const onAddTarea = (formState, onResetForm) => {
+        const { cedula } = getUserData();
+        addTodo( cedula, formState, setOpenAlertSuccess, setOpenAlertError );
+        onResetForm();
+    }
 
+    useEffect(() => {
+        const userData = getUserData();
+        getAllTodos(userData, setTodos);
+    }, [openAlertSuccess, changed])//Para que los todos se refresquen siempre que se agregue uno nuevo
 
- 
+    { (!todos || todos === undefined) && <></> }
 
 
     return (
-        <Box sx={{ height: '70vh', background: '#D9D9D9', width: '60vh', marginTop: '15vh', borderRadius: '5px', marginLeft: '10vh'}}>
-            <div style={{ background: 'red', borderTopLeftRadius: '5px', borderTopRightRadius: '5px', backgroundColor: '#4FA4D3', display: 'flex', flexDirection: 'row' }}>
-                <h2 style={{ fontFamily: 'Arial', color: 'white', paddingLeft: '2vh' }}>Tareas</h2>
-                <Box sx={{display:'flex', alignItems:'center', marginLeft:'auto'}}>
-                    <Button sx={{marginRight: '2vh', background: ' rgb(7, 86, 114)', color: 'white', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }}}>Agregar</Button>
+        <>
+        <Box sx={ stylesBoxContenedorPrincipal }>
+            <div className='Tareas-ContenedorHeader'>
+                
+                <h2 className='Tareas-Header2'> 
+                    Tareas
+                </h2>
+                
+                <Box sx={ stylesBoxBoton }>
+                    <Button 
+                        sx={stylesBotonAgregar}
+                        onClick={onOpenModal}
+                    >
+                        Agregar
+                    </Button>
                 </Box>
+
             </div>
-            <Box sx={{overflowY: 'auto', height: '60vh'}}>
-                {Tareas.map((tarea) => (
-                    <Tarea nombre={tarea} />
+
+            <Box sx={stylesBoxTareas}>
+                {todos.map(({ id, cedula_usuario, contenido, titulo }) => (
+                    <Tarea 
+                        key = {id}
+                        id = {id}
+                        cedula = {cedula_usuario}
+                        contenido = {contenido}
+                        titulo = {titulo}
+                        onChanged = {onChanged}
+                    />
                 ))}
             </Box>
-
-
         </Box>
+
+        <ModalVisualizacion 
+            open={openModal}
+            handleClose={ onCloseModal }
+
+            titulo={ "Nueva tarea" }
+            botonesActivos={{
+                eliminar: false,
+                modificar: false,
+                enviar: true
+            }}
+            funcionesBotones={{
+                onEliminar: () => {},
+                onModificar: () => {},
+            }}
+            onSubmitForm={onAddTarea}
+        />
+
+        {/* Alert que se mostrará cuando se cree la tarea correctamente */}
+        <Alert 
+            open = { openAlertSuccess }
+            handleClose = {() => { setOpenAlertSuccess(false) }}
+            title = "Tarea creada"
+            content = "La tarea se ha creado correctamente"
+            acceptButtonText = "Aceptar"
+            acceptButtonFunction = { onCreatedTODO }
+            oneButton = { true }
+        />
+        
+        {/* Alert que se mostrará cuando suceda algún error */}
+        <Alert 
+            open = { openAlertError }
+            handleClose = {() => { setOpenAlertError(false) }}
+            title = "Error"
+            content = "Se ha producido un error al crear la tarea"
+            acceptButtonText = "Aceptar"
+            acceptButtonFunction = {() => { setOpenAlertError(false) }}
+            oneButton = { true }
+        />
+
+        </>
     )
 }

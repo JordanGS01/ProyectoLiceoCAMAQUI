@@ -1,10 +1,8 @@
 
+
+import { Button, Box } from '@mui/material'
+
 import './BotonesProfesor.css'
-
-import React from 'react'
-import { Box } from '@mui/system'
-import Button from '@mui/material/Button'
-
 
 export const BotonesProfesor = () => {
   return (

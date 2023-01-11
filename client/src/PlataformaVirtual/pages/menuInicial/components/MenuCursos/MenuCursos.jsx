@@ -1,15 +1,13 @@
 
-import React from 'react'
 
-import { ListaCursos } from '../ListaCursos/ListaCursos'
-import Box from '@mui/material/Box';
+import { Box, Button } from '@mui/material';
 
 import { BotonesProfesor } from '../BotonesProfesor/BotonesProfesor';
+import { ListaCursos } from '../ListaCursos/ListaCursos'
 
 import './MenuCursos.css'
-import Button from '@mui/material/Button'
 
-export const MenuCursos = ({tipo}) => {
+export const MenuCursos = ({ tipo }) => {
     return (
         <Box className='Box-cursos'>
             <div style={{ background: 'red', borderTopLeftRadius: '5px', borderTopRightRadius: '5px', backgroundColor: '#4FA4D3', display: 'flex', flexDirection: 'row' }}>

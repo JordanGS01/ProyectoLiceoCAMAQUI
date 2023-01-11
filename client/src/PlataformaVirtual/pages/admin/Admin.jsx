@@ -34,7 +34,7 @@ export const Admin = () => {
   useEffect(() => {
     if (!loged) {
       navigate('/login')
-    } else if (!isAdmin) {
+    } else if (!isAdmin()) {
       navigate('/menuInicial')
     }
   }, [loged])
