@@ -52,6 +52,16 @@ export const UserProvider = ({ children }) => {
         return userData.tipo === 'A'
     }
 
+    const getUserData = () => {
+        const userString = window.localStorage.getItem('user');
+
+        if( userString ) {
+            const user = JSON.parse(userString);
+            return user;
+        }
+        return false;
+    }
+
     useEffect(() => {
       const userString = window.localStorage.getItem('user');
 
@@ -68,7 +78,7 @@ export const UserProvider = ({ children }) => {
         <UserContext.Provider value={{ 
             userData, setUser, logOutUser,
             loged, isStudent, isProfessor,
-            isAdmin
+            isAdmin, getUserData
         }}>
             { children }
         </UserContext.Provider>

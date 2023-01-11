@@ -1,16 +1,16 @@
-import { Box } from '@mui/material'
-import React from 'react'
 
+
+import { Box } from '@mui/material'
+
+import { stylesBoxContenedor } from './ClasesSxTarea'
 import './Tarea.css'
 
-export const Tarea = ({ nombre }) => {
+export const Tarea = ({ id, cedula, contenido, titulo }) => {
     return (
-
-        <Box sx={{ margin: '5vh', background: '#BAC8D0', height: '10vh', display: 'flex', alignItems: 'center', justifyContent:'center', borderRadius:'5px'}}>
-            <div style={{color:'rgb(11, 69, 120,0.751)', fontFamily:'Arial'}}>
-                {nombre}
-            </div>
+        <Box sx={stylesBoxContenedor}>
+            <p className="Tarea-Titulo">
+                {titulo}
+            </p>
         </Box>
-
     )
 }
