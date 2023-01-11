@@ -223,7 +223,7 @@ export const FormSignin = () => {
         <Alert 
             open = { openAlertError }
             handleClose = {() => { setOpenAlertError(false) }}
-            title = "Ha ocurrodo un error"
+            title = "Ha ocurrido un error"
             content = "El número de cédula que digitó ya existe registrado en el sistema"
             acceptButtonText = "Aceptar"
             acceptButtonFunction = {() => { setOpenAlertError(false) }}

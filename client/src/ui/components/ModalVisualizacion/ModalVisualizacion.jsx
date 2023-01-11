@@ -12,7 +12,7 @@ import './ModalVisualizacion.css'
 
 
 export const ModalVisualizacion = ({ open, handleClose, titulo, botonesActivos, funcionesBotones, idObj, tituloObj ,contenidoObj, onSubmitForm }) => {
-    const { formState, onInputChange } = useForm({
+    const { formState, onInputChange, onResetForm } = useForm({
         id: idObj,
         tituloF: tituloObj,
         contenido: contenidoObj
@@ -22,7 +22,7 @@ export const ModalVisualizacion = ({ open, handleClose, titulo, botonesActivos, 
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
-        onSubmitForm(formState);
+        onSubmitForm(formState, onResetForm);
     }
 
 
