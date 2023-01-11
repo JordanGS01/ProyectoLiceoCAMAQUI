@@ -1,10 +1,10 @@
 
 import React from 'react'
 
-import { ListaCursos } from '../../../ListaCursos/ListaCursos'
+import { ListaCursos } from '../ListaCursos/ListaCursos'
 import Box from '@mui/material/Box';
 
-import { BotonesProfesor } from '../../../BotonesProfesor/BotonesProfesor';
+import { BotonesProfesor } from '../BotonesProfesor/BotonesProfesor';
 
 import './MenuCursos.css'
 import Button from '@mui/material/Button'

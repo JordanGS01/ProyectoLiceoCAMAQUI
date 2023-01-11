@@ -10,21 +10,22 @@ import { MenuCurso } from '../pages/menuCurso/MenuCurso'
 import { MenuInicial } from '../pages/menuInicial/MenuInicial'
 import { SignIn } from '../pages/signIn/SignIn'
 
+import { Link } from 'react-router-dom'
 
 export const PlataformaVirtualRouter = () => {
   return (
     <>
-    <Routes>
-        <Route path='admin' element={ <Admin /> }/>
-        <Route path='apuntes' element={ <Apuntes /> }/>
-        <Route path='cartasAprendizaje' element={ <CartasAprendizaje /> }/>
-        <Route path='documentos' element={ <Documentos /> }/>
-        <Route path='/login' element={ <LogIn /> }/>
-        <Route path='menuCurso' element={ <MenuCurso /> }/>
-        <Route path='menuInicial' element={ <MenuInicial /> }/>
-        <Route path='signIn' element={ <SignIn /> }/>
-        <Route path='/' element={ <Navigate to='/login' /> }/>
-    </Routes>
+      <Routes>
+        <Route path='admin' element={<Admin />} />
+        <Route path='apuntes' element={<Apuntes />} />
+        <Route path='cartasAprendizaje' element={<CartasAprendizaje />} />
+        <Route path='documentos' element={<Documentos />} />
+        <Route path='/login' element={<LogIn />} />
+        <Route path='/menuCurso/:direccion'  element={<MenuCurso />}/>
+        <Route path='menuInicial' element={<MenuInicial />} />
+        <Route path='signIn' element={<SignIn />} />
+        <Route path='/' element={<Navigate to='/login' />} />
+      </Routes>
     </>
   )
 }
