@@ -20,7 +20,7 @@ export const Tareas = () => {
 
 
     return (
-        <Box sx={{ height: '70vh', background: '#D9D9D9', width: '60vh', marginTop: '15vh', borderRadius: '5px', marginLeft: '20vh'}}>
+        <Box sx={{ height: '70vh', background: '#D9D9D9', width: '60vh', marginTop: '15vh', borderRadius: '5px', marginLeft: '10vh'}}>
             <div style={{ background: 'red', borderTopLeftRadius: '5px', borderTopRightRadius: '5px', backgroundColor: '#4FA4D3', display: 'flex', flexDirection: 'row' }}>
                 <h2 style={{ fontFamily: 'Arial', color: 'white', paddingLeft: '2vh' }}>Tareas</h2>
                 <Box sx={{display:'flex', alignItems:'center', marginLeft:'auto'}}>

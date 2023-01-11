@@ -1,6 +1,6 @@
 
 
-import { useNavigate } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 
 import Button from '@mui/material/Button'
 import Box from '@mui/material/Box';
@@ -9,6 +9,7 @@ import './Botones.css'
 
 
 export const Botones = () => {
+
   const navigate = useNavigate();
 
   return (
