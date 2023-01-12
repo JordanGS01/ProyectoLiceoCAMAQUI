@@ -1,9 +1,9 @@
 
 
 import { Stack, IconButton, Tooltip } from "@mui/material"
-import { KeyboardReturn, Delete, Send, AutoFixHigh } from "@mui/icons-material"
+import { KeyboardReturn, Send } from "@mui/icons-material"
 
-import { stylesBotonRegresarEnviar, stylesBotonEliminar, stylesBotonModificar } from '../ModalVisualizacion/ClasesSxModal'
+import { stylesBotonRegresarEnviar } from '../ModalVisualizacion/ClasesSxModal'
 
 export const ModalSingleInputButtons = ({ onClose }) => {
   return (

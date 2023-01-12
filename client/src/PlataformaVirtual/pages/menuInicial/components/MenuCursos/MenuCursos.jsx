@@ -4,12 +4,11 @@ import { useState, useEffect, useContext } from 'react'
 
 import { UserContext } from '../../../../context/UserContext'
 
-import { Box, Button } from '@mui/material';
+import { Box } from '@mui/material';
 
-import { BotonesProfesor } from '../BotonesProfesor/BotonesProfesor';
-import { ListaCursos } from '../ListaCursos/ListaCursos'
+import { BotonesProfesor, ListaCursos, BotonUnirseClase } from '../';
 
-import { stylesBoxButton, stylesButtonJoinGroup, stylesBoxGroupsList } from './ClasesSxMenuCursos'
+import { stylesBoxGroupsList } from './ClasesSxMenuCursos'
 import './MenuCursos.css'
 
 import { getAllUserGroups } from '../../helpers'
@@ -33,17 +32,14 @@ export const MenuCursos = ({ tipo }) => {
             <div className="MenuCursos-Container">
                 <h2 className="MenuCursos-H2">Grupos</h2>
                 {
-                tipo == 'P' ? 
+                tipo === 'P' ? 
                 <BotonesProfesor
                     handleChanged={onChangedGroups}
-                    cursos={cursos}
                 /> 
                 :
-                <Box sx={stylesBoxButton}>
-                    <Button sx={stylesButtonJoinGroup}>
-                        Unirse a clase
-                    </Button>
-                </Box>
+                <BotonUnirseClase
+                    handleChanged={onChangedGroups}
+                />
                 }
             </div>
             <Box sx={stylesBoxGroupsList}>

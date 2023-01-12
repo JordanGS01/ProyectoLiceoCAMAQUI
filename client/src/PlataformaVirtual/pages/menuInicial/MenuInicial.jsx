@@ -7,19 +7,13 @@ import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext"
 
 import { NavBar } from "../../../ui";
-import { Tareas } from "./components";
+import { Breadcrums } from "../../../ui/Breadcrums/Breadcrums";
 
-import { MenuCursos } from "./components/MenuCursos/MenuCursos";
+import { MenuCursos, InformacionMenuInicial, Tareas } from "./components";
 
 import './MenuInicial.css'
 
-import { Box } from "@mui/system";
-
-
-import { InformacionMenuInicial } from "./components/InformacionMenuInicial/InformacionMenuInicial";
-
-import { Breadcrums } from "../../../ui/Breadcrums/Breadcrums";
-
+import { Box } from "@mui/material";
 
 
 export const MenuInicial = () => {

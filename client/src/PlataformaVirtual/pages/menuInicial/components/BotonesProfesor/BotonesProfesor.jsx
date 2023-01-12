@@ -13,7 +13,7 @@ import './BotonesProfesor.css'
 import { createGroup } from '../../helpers'
 
 
-export const BotonesProfesor = ({ handleChanged, cursos }) => {
+export const BotonesProfesor = ({ handleChanged }) => {
   const { getUserData } = useContext(UserContext);
   
   const [openModalAddGroup, setOpenModalAddGroup] = useState(false);
