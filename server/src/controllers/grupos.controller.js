@@ -7,7 +7,7 @@ const getUserGroups = async (req, res, next) => {
         const { ced } = req.params;
         await pool.query
         (
-            "SELECT cedula_usuario, g.nombre FROM relacion_ug as ug, (SELECT * FROM grupos) as g WHERE ug.id_grupo=g.id_grupo AND cedula_usuario=$1", 
+            "SELECT cedula_usuario, g.nombre, g.id_grupo FROM relacion_ug as ug, (SELECT * FROM grupos) as g WHERE ug.id_grupo=g.id_grupo AND cedula_usuario=$1", 
             [ced]
         ).then((answer) => {
             res.json({

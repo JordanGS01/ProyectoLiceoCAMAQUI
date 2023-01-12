@@ -1,27 +1,57 @@
 
 
+import { useState, useEffect, useContext } from 'react'
+
+import { UserContext } from '../../../../context/UserContext'
+
 import { Box, Button } from '@mui/material';
 
 import { BotonesProfesor } from '../BotonesProfesor/BotonesProfesor';
 import { ListaCursos } from '../ListaCursos/ListaCursos'
 
+import { stylesBoxButton, stylesButtonJoinGroup, stylesBoxGroupsList } from './ClasesSxMenuCursos'
 import './MenuCursos.css'
 
+import { getAllUserGroups } from '../../helpers'
+
+
 export const MenuCursos = ({ tipo }) => {
+    const { getUserData, isProfessor } = useContext(UserContext);
+    const [cursos, setCursos] = useState([]);
+    const [changed, setChanged] = useState(false);
+
+    const onChangedGroups = () => setChanged(!changed);
+
+    useEffect(() => {
+      const { cedula } = getUserData();
+      getAllUserGroups(cedula, setCursos);
+    }, [changed])
+
+
     return (
-        <Box className='Box-cursos'>
-            <div style={{ background: 'red', borderTopLeftRadius: '5px', borderTopRightRadius: '5px', backgroundColor: '#4FA4D3', display: 'flex', flexDirection: 'row' }}>
-                <h2 style={{ fontFamily: 'Arial', color: 'white', paddingLeft: '2vh' }}>Grupos</h2>
-                {tipo == 'P' ? <BotonesProfesor /> :
-                <Box sx={{display:'flex', alignItems:'center', marginLeft:'auto'}}>
-                    <Button sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '1vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' } }}>
+        <Box className='MenuCursos-Box'>
+            <div className="MenuCursos-Container">
+                <h2 className="MenuCursos-H2">Grupos</h2>
+                {
+                tipo == 'P' ? 
+                <BotonesProfesor
+                    handleChanged={onChangedGroups}
+                    cursos={cursos}
+                /> 
+                :
+                <Box sx={stylesBoxButton}>
+                    <Button sx={stylesButtonJoinGroup}>
                         Unirse a clase
                     </Button>
                 </Box>
                 }
             </div>
-            <Box  sx={{marginLeft:'3vh',height:'30vh', overflowY: 'auto'}}>
-                <ListaCursos />
+            <Box sx={stylesBoxGroupsList}>
+                <ListaCursos
+                    cursos = { cursos }
+                    isProfessor = { isProfessor }
+                    onChangedGroups = { onChangedGroups }
+                />
             </Box>
         </Box>
     )

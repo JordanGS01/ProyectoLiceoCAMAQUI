@@ -1,42 +1,85 @@
 
 
-import './ListaCursos.css'
+import { useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
+import { Tooltip, IconButton } from '@mui/material'
+import { Delete } from '@mui/icons-material'
 
-export const ListaCursos = () => {
+import { Alert } from '../../../../../ui/components/Alert';
 
-  const cursos = []
+import { stylesBotonEliminar } from './ClasesSxListaCursos'
+import './ListaCursos.css'
 
+import { deleteGroup } from '../../helpers'
+
+
+export const ListaCursos = ({ cursos, isProfessor, onChangedGroups }) => {
   const navigate = useNavigate();
 
-  const Mate = {
-    name: 'Matematica'
+  const [openDeleteGroup, setOpenDeleteGroup] = useState(false);
+  const [clickedId, setClickedId] = useState(false);
+
+  const handleCloseModalDeleteGroup = () => setOpenDeleteGroup(false);
+  const handleOpenModalDeleteGroup = () => setOpenDeleteGroup(true);
+  const handleDeleteGroup = (id) => {
+    setClickedId(id);
+    handleOpenModalDeleteGroup();
   }
 
-  const esp = {
-    name: 'Español'
+  const onDeleteGroup = () => {
+    deleteGroup(clickedId, onChangedGroups);
+    setOpenDeleteGroup(false);
   }
 
-  const soc = {
-    name: 'Sociales'
-  }
-
-  const cien = {
-    name: 'Ciencia'
-  }
-
-  cursos.push(Mate)
-  cursos.push(esp)
-  cursos.push(soc)
-  cursos.push(cien)
-
+  { !cursos && <></> }
   return (
-    <ul className='body'>
-      {cursos.map((curso) => (
-        <li style={{ margin: '2vh', color: '#0B92DC', cursor:'pointer'}} onClick= {()=> navigate(`/menuCurso/${curso.name}`)} >{curso.name}</li>
+    <>
+    <ul className="ListaCursos-Ul">
+      {cursos.map(({ id_grupo, nombre }) => (
+        <div className='ListaCursos-ContainerCurso'>
+        
+        <li
+          key={id_grupo}
+          id={id_grupo}
+          className="ListaCursos-Li"
+          onClick= {()=> navigate(`/menuCurso/${id_grupo}`)} 
+        >
+          {nombre}
+        </li>
+        {isProfessor() ?
+          <Tooltip title="Eliminar" arrow>
+              <IconButton 
+                  aria-label="eliminar"
+                  color="primary"
+                  sx={stylesBotonEliminar}
+                  onClick={()=>{handleDeleteGroup(id_grupo)}}
+              >
+                  <Delete />
+              </IconButton>
+          </Tooltip>
+        : <></>
+        }
+        </div>
       ))}
     </ul>
+
+    <Alert 
+        open = { openDeleteGroup }
+        handleClose = { handleCloseModalDeleteGroup }
+        title = "Eliminar el grupo"
+        content = "¿Está seguro de que quiere eliminar el grupo?"
+        
+        acceptButtonText = "Sí"
+        acceptButtonFunction = { onDeleteGroup }
+
+        closeButtonText="No"
+        closeButtonFunction = { handleCloseModalDeleteGroup }
+
+        oneButton = { false }
+    />
+
+    </>
   )
 } 

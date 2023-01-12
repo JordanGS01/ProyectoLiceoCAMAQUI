@@ -1,3 +1,16 @@
-.body{
+.ListaCursos-Ul{
     background: #D9D9D9;
+}
+
+.ListaCursos-Li{
+    margin: 2vh; 
+    color: #0B92DC;
+    cursor: pointer;
+}
+
+.ListaCursos-ContainerCurso{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
 }
