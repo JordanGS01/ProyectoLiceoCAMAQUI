@@ -8,7 +8,8 @@ export const stylesBoxContainer = {
     width: '80vh',
     height: '80%',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
+    border: '1px solid #000',
     boxShadow: 24,
-    p: 4,
+    p: 2.5,
+    borderRadius: '5px'
 };

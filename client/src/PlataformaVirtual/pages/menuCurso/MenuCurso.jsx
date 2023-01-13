@@ -10,13 +10,14 @@ import { NavBar, Breadcrums } from "../../../ui";
 
 import { Box } from '@mui/material';
 
-import { ModalApuntes } from './components/ModalApuntes/ModalApuntes'
+import { ModalApuntes, ModalTarjetasAprendizaje } from './components'
 
 
 export const MenuCurso = () => {
   const { getUserData } = useContext(UserContext);
 
   const [openModalApuntes, setOpenModalApuntes] = useState(false);
+  const [openModalTarjetas, setOpenModalTarjetas] = useState(false);
   const [cedulaUsuario, setCedulaUsuario] = useState(0);
 
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ export const MenuCurso = () => {
 
   const handleCloseModalApuntes = () => setOpenModalApuntes(false);
   const handleOpenModalApuntes = () => setOpenModalApuntes(true);
+
+  const handleCloseModalTarjetas = () => setOpenModalTarjetas(false);
+  const handleOpenModalTarjetas = () => setOpenModalTarjetas(true);
 
   useEffect(() => {
     const { cedula } = getUserData();
@@ -45,12 +49,20 @@ export const MenuCurso = () => {
           <Breadcrums ruta={lista}/>
           <button onClick={()=>navigate(-1)}>Volver</button>
           <button onClick={handleOpenModalApuntes}>Apuntes</button>
+          <button onClick={handleOpenModalTarjetas}>Cartas</button>
         </Box>
       </Box>
 
       <ModalApuntes
         open={openModalApuntes}
         handleClose={handleCloseModalApuntes}
+        cedula={cedulaUsuario}
+        idGrupo={id}
+      />
+
+      <ModalTarjetasAprendizaje
+        open={openModalTarjetas}
+        handleClose={handleCloseModalTarjetas}
         cedula={cedulaUsuario}
         idGrupo={id}
       />
