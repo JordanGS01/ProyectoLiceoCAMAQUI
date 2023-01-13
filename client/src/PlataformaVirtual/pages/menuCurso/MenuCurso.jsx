@@ -1,25 +1,40 @@
-import React from 'react'
 
-import { NavBar } from "../../../ui/components/NavBar/NavBar";
 
-import { Breadcrums } from "../../../ui/Breadcrums/Breadcrums";
+import { useState, useContext, useEffect } from 'react';
+
+import { useNavigate, useParams } from 'react-router-dom';
+
+import { UserContext } from '../../context/UserContext';
+
+import { NavBar, Breadcrums } from "../../../ui";
 
 import { Box } from '@mui/material';
 
-import { useNavigate } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { ModalApuntes } from './components/ModalApuntes/ModalApuntes'
 
 
 export const MenuCurso = () => {
+  const { getUserData } = useContext(UserContext);
+
+  const [openModalApuntes, setOpenModalApuntes] = useState(false);
+  const [cedulaUsuario, setCedulaUsuario] = useState(0);
 
   const navigate = useNavigate();
-
-  const {direccion} = useParams()
-
+  const { id } = useParams();
+  
   const lista = []
 
   lista.push('Menú Principal')
-  lista.push(direccion)
+  lista.push(id)
+
+  const handleCloseModalApuntes = () => setOpenModalApuntes(false);
+  const handleOpenModalApuntes = () => setOpenModalApuntes(true);
+
+  useEffect(() => {
+    const { cedula } = getUserData();
+    setCedulaUsuario(cedula);
+  }, [])
+  
 
 
   return (
@@ -29,8 +44,16 @@ export const MenuCurso = () => {
         <Box sx={{background:'', width:'78%'}}>
           <Breadcrums ruta={lista}/>
           <button onClick={()=>navigate(-1)}>Volver</button>
+          <button onClick={handleOpenModalApuntes}>Apuntes</button>
         </Box>
       </Box>
+
+      <ModalApuntes
+        open={openModalApuntes}
+        handleClose={handleCloseModalApuntes}
+        cedula={cedulaUsuario}
+        idGrupo={id}
+      />
     </>
   )
 }

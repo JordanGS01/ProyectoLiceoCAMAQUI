@@ -5,11 +5,11 @@ const pool = require('../connection')
 
 const getUserNote = async (req, res, next) => {
     try {
-        const { idGrupo, cedula } = req.body;
+        const { id, ced } = req.params;
         await pool.query
         (
             "SELECT * FROM apuntes WHERE id_grupo=$1 AND cedula_usuario=$2", 
-            [idGrupo, cedula]
+            [id, ced]
         ).then((answer) => {
             res.json({
                 status: 'OK',

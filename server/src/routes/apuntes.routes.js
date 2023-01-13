@@ -7,7 +7,7 @@ const { addNote, deleteNote, getUserNote,
 
 //Routes
 
-router.get('/apuntes', getUserNote);
+router.get('/apuntes/:id/:ced', getUserNote);
 
 router.post('/apuntes', addNote);
 
