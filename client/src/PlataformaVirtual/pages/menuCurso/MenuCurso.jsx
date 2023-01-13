@@ -12,6 +12,8 @@ import { Box } from '@mui/material';
 
 import { ModalApuntes, ModalTarjetasAprendizaje } from './components'
 
+import { Grupo, Herramientas, Noticias } from './components'
+
 
 export const MenuCurso = () => {
   const { getUserData } = useContext(UserContext);
@@ -21,8 +23,12 @@ export const MenuCurso = () => {
   const [cedulaUsuario, setCedulaUsuario] = useState(0);
 
   const navigate = useNavigate();
+
   const { id } = useParams();
-  
+  const { isStudent, isAdmin, logOutUser, userData, loged, isProfessor } = useContext(UserContext);
+
+  //const { direccion } = useParams()
+
   const lista = []
 
   lista.push('Menú Principal')
@@ -40,16 +46,30 @@ export const MenuCurso = () => {
   }, [])
   
 
+  const Codigo = 'E7GH45'
+
 
   return (
     <>
       <NavBar />
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-        <Box sx={{background:'', width:'78%'}}>
-          <Breadcrums ruta={lista}/>
-          <button onClick={()=>navigate(-1)}>Volver</button>
-          <button onClick={handleOpenModalApuntes}>Apuntes</button>
-          <button onClick={handleOpenModalTarjetas}>Cartas</button>
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ width: '80%' }}>
+          <Breadcrums ruta={lista} />
+          <Box sx={{ background: '', display: 'flex', flexDirection: 'row' }}>
+            <Grupo />
+
+            {(isStudent() && <Herramientas nameCurso={id} />)}
+
+            {(isProfessor() && <Box sx={{ }}>
+              <Box sx={{marginLeft:'30vh', display:'flex', flexDirection:'column', justifyContent:'center', color:'#0B92DC'}}>
+                <h2>Codigo de ingreso al curso</h2>
+                <h2 style={{marginLeft:'10vh', color:'green'}}>{Codigo}</h2>
+              </Box>
+              <Herramientas nameCurso={id} />
+            </Box>)}
+
+          </Box>
+          <Noticias />
         </Box>
       </Box>
 

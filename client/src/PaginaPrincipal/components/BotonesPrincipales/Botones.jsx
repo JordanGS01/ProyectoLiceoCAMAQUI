@@ -9,7 +9,6 @@ import './Botones.css'
 
 
 export const Botones = () => {
-
   const navigate = useNavigate();
 
   return (
@@ -32,7 +31,6 @@ export const Botones = () => {
           >
             Prematricula en línea
           </Button>
-
           <Button 
             sx={{
               background: '#4FA4D3',
@@ -48,7 +46,6 @@ export const Botones = () => {
           >
             Plataforma Virtual
           </Button>
-
       </Box>
 
     </div>

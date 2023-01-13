@@ -19,6 +19,7 @@ import { Box } from "@mui/material";
 export const MenuInicial = () => {
 
   const navigate = useNavigate();
+  
   const { isStudent ,isAdmin, logOutUser, userData, loged } = useContext(UserContext);
 
   useEffect(() => {
