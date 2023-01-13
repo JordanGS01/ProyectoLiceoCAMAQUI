@@ -10,11 +10,11 @@ import { useParams } from "react-router-dom";
 
 export const Documentos = () => {
 
-  const { direccion} = useParams()
+  const { id, nombre} = useParams()
   const lista=[]
 
   lista.push('Menú Principal')
-  lista.push(direccion)
+  lista.push(nombre)
   lista.push('Documentos')
   
   

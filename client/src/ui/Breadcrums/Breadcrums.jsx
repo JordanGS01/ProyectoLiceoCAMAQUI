@@ -14,7 +14,9 @@ export const Breadcrums = (props) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { direccion } = useParams()
+    const { id,nombre } = useParams()
+
+    console.log(id, nombre)
 
     const lista = []
 
@@ -33,10 +35,10 @@ export const Breadcrums = (props) => {
                     <MoreHorizIcon sx={{ color: '#0B92DC' }} />
                 </Button>
                 {props.ruta == 'Menú Principal' ? <h7 style={{ color: '#0B92DC' }}>{props.ruta}</h7> : props.direccion=='Documentos' ? <h7 style={{ color: '#0B92DC' }}>Documentos</h7>:
-                    <h7 style={{ color: '#0B92DC' }}>{direccion}</h7>}
+                    <h7 style={{ color: '#0B92DC' }}>{nombre}</h7>}
             </Box>
             <div class='breadcrums-linea'></div>
-            <BreadcrumsList rutas={lista} open={open} handleClose={handleClose} />
+            <BreadcrumsList  id ={id} rutas={lista} open={open} handleClose={handleClose} />
         </Box>
     )
 }

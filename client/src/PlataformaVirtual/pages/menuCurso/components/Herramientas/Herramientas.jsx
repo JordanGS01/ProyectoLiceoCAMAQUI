@@ -12,12 +12,11 @@ import { UserContext } from '../../../../context/UserContext'
 
 
 
-export const Herramientas = ({ nameCurso }) => {
+export const Herramientas = (props) => {
 
   const navigate = useNavigate()
 
   const { isStudent, isAdmin, logOutUser, userData, loged, isProfessor } = useContext(UserContext);
-
 
   return (
     <>
@@ -28,7 +27,7 @@ export const Herramientas = ({ nameCurso }) => {
         <div style={{ background: ' rgb(7, 86, 114)', width: '100%', height: '2px' }}></div>
 
         <Box sx={{ marginLeft: '1vh', background: '', display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3vh' }} >
-          <Button onClick={() => navigate(`/documentos/${nameCurso}`)} sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '1vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, width: '26vh', height: '10vh' }} > Documentos</Button>
+          <Button onClick={() => navigate(`/documentos/${props.id}/${props.nameCurso}`)} sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '1vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, width: '26vh', height: '10vh' }} > Documentos</Button>
           <Button sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '1vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, width: '26vh', height: '10vh', marginLeft: '1vh' }} > Apuntes</Button>
         </Box>
 
@@ -43,13 +42,9 @@ export const Herramientas = ({ nameCurso }) => {
         </Box>
         <div style={{ background: ' rgb(7, 86, 114)', width: '100%', height: '2px' }}></div>
         <Box sx={{ background: '', display: 'flex', flexDirection: 'row', marginTop: '3vh' }}>
-          <Button onClick={() => navigate(`/documentos/${nameCurso}`)}  sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '3vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, marginLeft: '3vh', width: '100%', height: '10vh' }} >Documentos</Button>
+          <Button onClick={() => navigate(`/documentos/${props.id}/${props.nameCurso}`)}  sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '3vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, marginLeft: '3vh', width: '100%', height: '10vh' }} >Documentos</Button>
         </Box>
       </Box>)}
-
-
-
-
     </>
   )
 }

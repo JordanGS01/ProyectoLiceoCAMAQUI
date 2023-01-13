@@ -44,7 +44,7 @@ export const ListaCursos = ({ cursos, isProfessor, onChangedGroups }) => {
           key={id_grupo}
           id={id_grupo}
           className="ListaCursos-Li"
-          onClick= {()=> navigate(`/menuCurso/${id_grupo}`)} 
+          onClick= {()=> navigate(`/menuCurso/${id_grupo}/${nombre}`)} 
         >
           {nombre}
         </li>

@@ -11,7 +11,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 
-export const BreadcrumsList = ({ rutas, open, handleClose }) => {
+export const BreadcrumsList = ({id, rutas, open, handleClose }) => {
 
 
     const navigate = useNavigate();
@@ -29,7 +29,7 @@ export const BreadcrumsList = ({ rutas, open, handleClose }) => {
             if (dir == 'Documentos') {
                 navigate(`#`)
             } else {
-                navigate(`/menuCurso/${dir}`)
+                navigate(`/menuCurso/${id}/${dir}`)
             }
 
         }

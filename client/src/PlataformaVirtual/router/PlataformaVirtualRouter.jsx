@@ -16,9 +16,9 @@ export const PlataformaVirtualRouter = () => {
       <Routes>
         <Route path='admin' element={<Admin />} />
         <Route path='cartasAprendizaje' element={<CartasAprendizaje />} />
-        <Route path='documentos/:direccion' element={<Documentos />} />
+        <Route path='documentos/:id/:nombre' element={<Documentos />} />
         <Route path='/login' element={<LogIn />} />
-        <Route path='/menuCurso/:id'  element={<MenuCurso />}/>
+        <Route path='/menuCurso/:id/:nombre'  element={<MenuCurso />}/>
         <Route path='menuInicial' element={<MenuInicial />} />
         <Route path='signIn' element={<SignIn />} />
         <Route path='/' element={<Navigate to='/login' />} />
