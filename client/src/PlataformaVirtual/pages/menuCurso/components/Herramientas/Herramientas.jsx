@@ -37,12 +37,27 @@ export const Herramientas = (props) => {
       </Box>)}
 
       {(isProfessor() && <Box className='Box-herramienta'>
-        <Box sx={{ background: '', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <h2 style={{ color: 'white', fontFamily: 'Arial' }}>Herramientas</h2>
         </Box>
         <div style={{ background: ' rgb(7, 86, 114)', width: '100%', height: '2px' }}></div>
-        <Box sx={{ background: '', display: 'flex', flexDirection: 'row', marginTop: '3vh' }}>
-          <Button onClick={() => navigate(`/documentos/${props.id}/${props.nameCurso}`)}  sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '3vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, marginLeft: '3vh', width: '100%', height: '10vh' }} >Documentos</Button>
+        <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: '3vh' }}>
+          <Button 
+            onClick={() => navigate(`/documentos/${props.id}/${props.nameCurso}`)}
+            sx={{ 
+              background: 'rgb(7, 86, 114)',
+              color: 'white',
+              marginRight: '3vh',
+              '&:hover':{ 
+                backgroundColor:'rgba(6, 82, 110, 0.696)'
+              },
+              marginLeft: '3vh',
+              width: '100%',
+              height: '10vh' 
+              }}
+          >
+                Documentos
+          </Button>
         </Box>
       </Box>)}
     </>

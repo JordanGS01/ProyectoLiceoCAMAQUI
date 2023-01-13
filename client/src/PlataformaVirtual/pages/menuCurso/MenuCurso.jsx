@@ -25,15 +25,10 @@ import { UserContext } from "../../context/UserContext"
 
 
 export const MenuCurso = () => {
-
-  const navigate = useNavigate();
-
-  const { isStudent, isAdmin, logOutUser, userData, loged, isProfessor } = useContext(UserContext);
-
+  const { isStudent, isProfessor } = useContext(UserContext);
   const { id, nombre} = useParams()
 
   const lista = []
-
   lista.push('Menú Principal')
   lista.push(nombre)
 
@@ -48,13 +43,16 @@ export const MenuCurso = () => {
 
             {(isStudent() && <Herramientas id={id} nameCurso={nombre} />)}
 
-            {(isProfessor() && <Box sx={{ }}>
-              <Box sx={{marginLeft:'30vh', display:'flex', flexDirection:'column', justifyContent:'center', color:'#0B92DC'}}>
-                <h2>Codigo de ingreso al curso</h2>
-                <h2 style={{marginLeft:'10vh', color:'green'}}>{id}</h2>
+            {(
+              isProfessor() && 
+              <Box sx={{ }}>
+                <Box sx={{marginLeft:'30vh', display:'flex', flexDirection:'column', justifyContent:'center', color:'#0B92DC'}}>
+                  <h2>Codigo de ingreso al curso</h2>
+                  <h2 style={{marginLeft:'10vh', color:'green'}}>{id}</h2>
+                </Box>
+                <Herramientas id={id} nameCurso={nombre} />
               </Box>
-              <Herramientas id={id} nameCurso={nombre} />
-            </Box>)}
+            )}
           </Box>
 
           <Noticias />
