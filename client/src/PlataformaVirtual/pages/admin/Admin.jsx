@@ -2,7 +2,7 @@
 
 import { useContext, useEffect } from 'react';
 
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import { Box, Table, TableBody, TableCell, TableContainer,
         TablePagination, TableRow, Paper, Checkbox,

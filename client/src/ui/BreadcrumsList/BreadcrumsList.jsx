@@ -22,12 +22,17 @@ export const BreadcrumsList = ({ rutas, open, handleClose }) => {
         }
     }
 
-    function elegir(dir){
-        if (dir=='Menú Principal') {
+    function elegir(dir) {
+        if (dir == 'Menú Principal') {
             navigate('/menuInicial')
-        }else{
-            navigate(`/menuCurso/${dir}`)
-        }  
+        } else {
+            if (dir == 'Documentos') {
+                navigate(`#`)
+            } else {
+                navigate(`/menuCurso/${dir}`)
+            }
+
+        }
     }
 
     return (
@@ -35,8 +40,8 @@ export const BreadcrumsList = ({ rutas, open, handleClose }) => {
             <Modal sx={{ marginTop: '15vh', marginLeft: '30vh' }} open={open} onClose={handleClose} >
                 <Box sx={{ background: '#D9D9D9', width: '20vh', border: 'solid', borderColor: '#0B92DC', borderRadius: '5PX' }}>
                     {rutas.map((dir) => (
-                        <Box onClick= {()=> elegir(dir)} sx={{ padding: '2vh', color: '#0B92DC', height: '1vh' }}>
-                           <ArrowForwardIosIcon sx={{height:'10px', width:'10px'}}/> {dir}
+                        <Box onClick={() => elegir(dir)} sx={{ padding: '2vh', color: '#0B92DC', height: '1vh' }}>
+                            <ArrowForwardIosIcon sx={{ height: '10px', width: '10px' }} /> {dir}
                         </Box>
                     ))}
                 </Box>

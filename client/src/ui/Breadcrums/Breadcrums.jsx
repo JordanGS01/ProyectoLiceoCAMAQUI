@@ -32,7 +32,7 @@ export const Breadcrums = (props) => {
                 <Button onClick={handleOpen} sx={{ '&:hover': { backgroundColor: 'white' }, borderRadius: '20px' }}>
                     <MoreHorizIcon sx={{ color: '#0B92DC' }} />
                 </Button>
-                {props.ruta == 'Menú Principal' ? <h7 style={{ color: '#0B92DC' }}>{props.ruta}</h7> :
+                {props.ruta == 'Menú Principal' ? <h7 style={{ color: '#0B92DC' }}>{props.ruta}</h7> : props.direccion=='Documentos' ? <h7 style={{ color: '#0B92DC' }}>Documentos</h7>:
                     <h7 style={{ color: '#0B92DC' }}>{direccion}</h7>}
             </Box>
             <div class='breadcrums-linea'></div>

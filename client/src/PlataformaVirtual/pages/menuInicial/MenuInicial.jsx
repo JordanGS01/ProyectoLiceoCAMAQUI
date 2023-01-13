@@ -25,6 +25,7 @@ import { Breadcrums } from "../../../ui/Breadcrums/Breadcrums";
 export const MenuInicial = () => {
 
   const navigate = useNavigate();
+  
   const { isStudent ,isAdmin, logOutUser, userData, loged } = useContext(UserContext);
 
   useEffect(() => {

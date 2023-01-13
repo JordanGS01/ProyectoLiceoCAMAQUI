@@ -1,0 +1,20 @@
+.Box-herramientas {
+    background: #4FA4D3;
+    border-radius: 5px;
+    padding-bottom: 1vh;
+    width: 60vh;
+    margin-top: 2vh;
+    margin-left: 15vh;
+    height: 40vh;
+}
+
+
+.Box-herramienta {
+    background: #4FA4D3;
+    border-radius: 5px;
+    padding-bottom: 1vh;
+    width: 60vh;
+    margin-top: 2vh;
+    margin-left: 15vh;
+    height: 25vh;
+}

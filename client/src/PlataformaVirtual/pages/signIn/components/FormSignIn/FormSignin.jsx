@@ -1,7 +1,7 @@
 
 
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 
 import { Box, FormControl, TextField, Button, InputAdornment, IconButton, Typography } from '@mui/material'
 import { PermIdentityOutlined ,BadgeOutlined, PasswordOutlined, Visibility, VisibilityOff } from '@mui/icons-material'
