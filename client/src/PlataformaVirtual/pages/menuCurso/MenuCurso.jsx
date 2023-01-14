@@ -1,40 +1,47 @@
-import React from 'react'
 
-import { NavBar } from "../../../ui/components/NavBar/NavBar";
 
-import { Breadcrums } from "../../../ui/Breadcrums/Breadcrums";
+import { useEffect, useContext } from "react"
 
-import { Box } from '@mui/material';
+import { NavBar, Breadcrums } from "../../../ui";
 
 import { useParams, useNavigate } from 'react-router-dom';
 
-import './MenuCurso.css'
+import { Box } from '@mui/material';
 
-import { Herramientas } from './components/Herramientas/Herramientas';
-
-import { Grupo } from './components/Grupo/Grupo';
-
-
+import { Herramientas, Grupo } from './components';
 import { Noticias } from './components/Noticias/Noticias';
-
-import { useContext } from "react"
-
 
 import { UserContext } from "../../context/UserContext"
 
+import './MenuCurso.css'
 
 
 export const MenuCurso = () => {
-  const { isStudent, isProfessor } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const { isStudent, isProfessor, isAdmin, logOutUser, userData, loged } = useContext(UserContext);
   const { id, nombre} = useParams()
 
+  //Para los breadcrums
   const lista = []
   lista.push('Menú Principal')
   lista.push(nombre)
 
+  useEffect(() => {
+    if (!loged) {
+      navigate('/login')
+    } else if (isAdmin()) {
+      navigate('/admin')
+    }
+  }, [loged])
+
+
   return (
     <>
-      <NavBar />
+      <NavBar
+        nombreUsuario={userData.nombre}
+        onLogOut={logOutUser}
+      />
       <Box sx={{ display: 'flex', justifyContent: 'center' }}>
         <Box sx={{ width: '80%' }}>
           <Breadcrums ruta={lista} />

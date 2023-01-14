@@ -1,0 +1,8 @@
+
+
+.Estudiantes-ContainerEstudiante{
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+    justify-content: space-between;
+}

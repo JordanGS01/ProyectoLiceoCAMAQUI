@@ -11,3 +11,7 @@ export * from './noticias/addNoticia'
 export * from './noticias/getGroupNoticias'
 export * from './noticias/modifyNoticia'
 export * from './noticias/deleteNoticia'
+
+//Estudiantes
+export * from './estudiantes/getGroupStudents'
+export * from './estudiantes/deleteFromGroup'

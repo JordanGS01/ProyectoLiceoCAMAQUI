@@ -1,17 +1,13 @@
-import React from 'react'
 
-import './Grupo.css'
+
+import { useContext } from "react"
+import { UserContext } from "../../../../context/UserContext"
 
 import { Box } from '@mui/material'
 
 import { Estudiantes } from '../Estudiantes/Estudiantes'
 
-
-import { useContext } from "react"
-
-
-import { UserContext } from "../../../../context/UserContext"
-
+import './Grupo.css'
 
 export const Grupo = () => {
 
@@ -37,11 +33,11 @@ export const Grupo = () => {
 
           {(isStudent() &&
             <Box sx={{ height: '17vh', overflowY: 'auto' }}>
-              <Estudiantes></Estudiantes>
+              <Estudiantes />
             </Box>)}
 
           {(isProfessor() && <Box sx={{ height: '40vh', overflowY: 'auto' }}>
-            <Estudiantes></Estudiantes>
+            <Estudiantes />
           </Box>)}
 
         </Box>
