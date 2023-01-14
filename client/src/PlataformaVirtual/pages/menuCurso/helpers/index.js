@@ -15,3 +15,4 @@ export * from './noticias/deleteNoticia'
 //Estudiantes
 export * from './estudiantes/getGroupStudents'
 export * from './estudiantes/deleteFromGroup'
+export * from './estudiantes/addStudentToGroup'

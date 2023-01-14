@@ -16,7 +16,7 @@ import { stylesBotonEliminar } from './ClasesSxEstudiantes'
 import './Estudiantes.css'
 
 
-export const Estudiantes = () => {
+export const Estudiantes = ({ changed, onChange }) => {
     const { id } = useParams();
 
     const { isProfessor } = useContext(UserContext);
@@ -30,13 +30,9 @@ export const Estudiantes = () => {
     const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
     const [openAlertError, setOpenAlertError] = useState(false);
 
-    const [changed, setChanged] = useState(false);
-
     const handleCloseModalDeleteStudent = () => setOpenDeleteStudent(false);
     const handleCloseAlertSuccess = () => setOpenAlertSuccess(false);
     const handleCloseAlertError = () => setOpenAlertError(false);
-    
-    const onChange = () => setChanged(!changed);
 
     const onDeleteGroup = (cedula, idGrupo) => {
         setClickedUser({
