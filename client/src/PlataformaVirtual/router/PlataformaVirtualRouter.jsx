@@ -8,7 +8,7 @@ import { LogIn } from '../pages/login/LogIn'
 import { MenuCurso } from '../pages/menuCurso/MenuCurso'
 import { MenuInicial } from '../pages/menuInicial/MenuInicial'
 import { SignIn } from '../pages/signIn/SignIn'
-
+import { Carpeta } from '../pages/carpeta/Carpeta'
 
 export const PlataformaVirtualRouter = () => {
   return (
@@ -21,6 +21,7 @@ export const PlataformaVirtualRouter = () => {
         <Route path='/menuCurso/:id/:nombre'  element={<MenuCurso />}/>
         <Route path='menuInicial' element={<MenuInicial />} />
         <Route path='signIn' element={<SignIn />} />
+        <Route path='/documentos/:idCurso/:nombreCurso/:idCarpeta/:nombreCarpeta' element={<Carpeta/>} />
         <Route path='/' element={<Navigate to='/login' />} />
       </Routes>
     </>

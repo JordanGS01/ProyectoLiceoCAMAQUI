@@ -35,7 +35,6 @@ export const MenuCurso = () => {
   const lista = []
 
   lista.push('Menú Principal')
-  lista.push(nombre)
 
   return (
     <>

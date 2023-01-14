@@ -14,18 +14,24 @@ import ArticleIcon from '@mui/icons-material/Article';
 
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
+import { useNavigate } from "react-router-dom";
+
+
 export const Documentos = () => {
+
+  const navigate = useNavigate()
 
   const { id, nombre } = useParams()
   const lista = []
 
-  const nombreCarpeta = 'Tareas'
+  const idCarpeta = '1'
 
-  const urlCarpeta = `/documentos/${id}/${nombre}`
+  const nombreCarpeta = 'ApuntesmIDORIYA' //Se debe tomar el nombre de la carpeta que creo el cliente
+
+  const urlCarpeta = `/documentos/${id}/${nombre}/${idCarpeta}/${nombreCarpeta}`
 
   lista.push('Menú Principal')
   lista.push(nombre)
-  lista.push('Documentos')
 
 
   const documentos = []
@@ -58,10 +64,10 @@ export const Documentos = () => {
       </Box>
 
       <Box sx={{ background: '', display: 'flex', flexDirection: 'row', justifyContent: 'center' }}>
-        <Box sx={{ width: '80%', background: '', border: 'solid', borderColor: '#0B92DC', height: '70vh', overflowY: 'auto' }}  >
+        <Box sx={{ width: '80%', background: '', border: 'solid', borderColor: '#0B92DC', height: '70vh', overflowY: 'auto' }}>
 
-          {carpetas.map((carp) => (<Box sx={{ width: '97%', background: '#E3E2E2', margin: '2vh', borderRadius: '5px' }}>
-            <Box sx={{ display: 'flex', alignItems: 'center', padding: '1vh' }}>
+          {carpetas.map((carp) => (<Box sx={{ width: '97%', background: '#E3E2E2', margin: '2vh', borderRadius: '5px' }} onClick= {()=> navigate(`/documentos/${id}/${nombre}/${idCarpeta}/${nombreCarpeta}`)}>
+            <Box sx={{ display: 'flex', alignItems: 'center', padding: '1vh' }} > 
               <FolderIcon sx={{ color: '  rgb(7, 86, 114)' }} /> <h7 style={{ color: '#0B92DC', marginLeft: '1vh' }}>{carp}</h7>
             </Box>
           </Box>))}

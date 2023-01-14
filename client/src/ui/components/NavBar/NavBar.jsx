@@ -6,10 +6,15 @@ import { LogoutOutlined } from '@mui/icons-material'
 import Logo from '../../../PaginaPrincipal/assets/Logo.svg'
 import './NavBar.css'
 
+import { useNavigate } from 'react-router-dom'
+
 export const NavBar = ({ nombreUsuario, onLogOut }) => {
+  
+  const navigate=useNavigate()   
+  
   return (
     <AppBar sx={{ display: 'flex', flexDirection: 'row', backgroundColor: '#4FA4D3'}}>
-        <img className='NavBar-Logo' src={Logo} alt="Logo del colegio" />
+        <img  onClick={()=>navigate('/menuInicial')} className='NavBar-Logo' src={Logo} alt="Logo del colegio" />
 
         <div className='NavBar-ButonsContainer'>
             <Typography variant="h6" component="div" sx={{ flexGrow: 1, mr: 3 }}>
