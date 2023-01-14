@@ -16,8 +16,6 @@ export const Breadcrums = (props) => {
 
     const { id,nombre } = useParams()
 
-    console.log(id, nombre)
-
     const lista = []
 
     if (props.ruta[0] == 'M') {
