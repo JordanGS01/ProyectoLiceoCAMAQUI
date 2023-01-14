@@ -8,7 +8,7 @@ const getGroupNews = async (req, res, next) => {
         const { idGrupo } = req.params;
         await pool.query
         (
-            "SELECT * FROM noticias WHERE id_grupo=$1", 
+            "SELECT * FROM noticias WHERE id_grupo=$1 ORDER BY id ASC", 
             [idGrupo]
         ).then((answer) => {
             res.json({

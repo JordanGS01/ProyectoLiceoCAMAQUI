@@ -1,6 +1,6 @@
 
 
-import { useContext } from "react"
+import { useContext, useState } from "react"
 
 import { Box } from '@mui/material'
 
@@ -11,8 +11,11 @@ import './Noticias.css'
 
 
 export const Noticias = () => {
-
     const { isStudent, isProfessor } = useContext(UserContext);
+
+    const [changed, setChanged] = useState(false);
+    const handleChanged = () => setChanged(!changed);
+
 
     return (
         <>
@@ -39,19 +42,22 @@ export const Noticias = () => {
                             </em>
                         </p>
                         
-                        <AgregarNoticia />
+                        <AgregarNoticia 
+                            changed={changed}
+                            onChange={handleChanged}
+                        />
                     </Box>
 
                     <div class='NoticiasRecientes-linea'></div>
                     
                     <Box sx={{ background: '#D9D9D9', width: '97.5%', color: '#0B92DC', padding: '2vh', borderRadius: '5px' }}>
-                        <NoticiasRecientes />
+                        <NoticiasRecientes
+                            changed={changed}
+                            handleChanged={handleChanged}
+                        />
                     </Box>
                 </Box>
             )}
-
-
-
         </>
     )
 }

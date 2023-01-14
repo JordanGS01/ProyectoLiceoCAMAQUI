@@ -1,84 +1,63 @@
 
 
-import { useContext } from "react"
+import { useState, useEffect, useContext } from "react"
+import { useParams } from "react-router-dom";
 
 import { UserContext } from "../../../../context/UserContext"
 
-import { InputBase, IconButton, Box, Paper } from '@mui/material';
+import { Box } from '@mui/material';
 
-import { AutoFixHigh, Delete } from "@mui/icons-material"
+import { NoticiaProfesor } from "../NoticiaProfesor/NoticiaProfesor"
 
-export const NoticiasRecientes = () => {
+import { getGroupNoticias } from '../../helpers'
 
-    const Noticias = []
 
-    Noticias.push('Hacer la cocina')
+
+export const NoticiasRecientes = ({ changed, handleChanged }) => {
+    const { id } = useParams();
+
+    
+    const [noticias, setNoticias] = useState([]);
 
     const { isStudent, isProfessor } = useContext(UserContext);
+
+
+    useEffect(() => {
+        getGroupNoticias(id, setNoticias);
+    }, [changed]);
+    
+    { (!noticias || noticias === undefined) && <></> }
 
     return (
         <>
 
             {(isStudent() && 
                 <Box sx={{ height: '40vh', overflow: 'auto' }}>
-                    {Noticias.map((Noticia) => (
-                        <Box sx={{ background: '#BAC8D0', color: '#0B92DC', marginTop: '1vh', padding: '10px', borderRadius: '5px' }}> {Noticia}</Box>
+                    {noticias.map(({id, titulo, contenido, id_grupo}) => (
+                        <Box 
+                            key={id}
+                            sx={{ background: '#BAC8D0', color: '#0B92DC', marginTop: '1vh', padding: '10px', borderRadius: '5px' }}
+                        >
+                            {titulo}
+                        </Box>
                     ))}
                 </Box>
             )}
 
             {(isProfessor() && 
                 <Box sx={{ height: '40vh', overflow: 'auto' }}>
-                    {Noticias.map((Noticia) => (
-                        <Paper
-                            component="form"
-                            sx={{ p: '2px 4px', display: 'flex', alignItems: 'center', width: '99.2%', marginTop: '1vh', borderRadius: '5px' }}
-                        >
-                            <InputBase
-                                sx={{ ml: 1, flex: 1 }}
-                                value={Noticia}
-                                inputProps={{ 'aria-label': 'search google maps' }}
-                            />
-
-                            <IconButton
-                                type="button"
-                                sx={{
-                                    p: '10px',
-                                    bgcolor: '#74d447',
-                                    borderRadius: '0px',
-                                    color: 'white',
-                                    ':hover': {
-                                        bgcolor: '#4AD447'
-                                    }
-                                }}
-                                aria-label="Modificar"
-                            >
-                                <AutoFixHigh />
-                            </IconButton>
-
-                            <IconButton
-                                color="primary"
-                                sx={{
-                                    p: '10px',
-                                    bgcolor: '#dd4c4c',
-                                    borderRadius: '0px 5px 5px 0px',
-                                    color: 'white',
-                                    ':hover': {
-                                        bgcolor: '#F63030'
-                                    }
-                                }}
-                                aria-label="Eliminar"
-                            >
-                                <Delete />
-                            </IconButton>
-
-                        </Paper>
+                    {noticias.map( ({id, titulo, contenido, id_grupo}) => (
+                        <NoticiaProfesor
+                            key = {id}
+                            id = {id}
+                            titulo = {titulo}
+                            contenido = {contenido}
+                            idGrupo = {id_grupo}
+                            onChanged = {handleChanged}
+                        />
                     ))}
                 </Box>
             )}
-
-
-
         </>
 
     )

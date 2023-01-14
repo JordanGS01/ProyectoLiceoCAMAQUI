@@ -9,7 +9,7 @@ import { ModalVisualizacion, Alert } from "../../../../../ui"
 import { addNoticia } from '../../helpers'
 import { useParams } from "react-router-dom"
 
-export const AgregarNoticia = () => {
+export const AgregarNoticia = ({ onChange }) => {
     const [openModalAgregar, setOpenModalAgregar] = useState(false);
     const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
     const [openAlertError, setOpenAlertError] = useState(false);
@@ -19,8 +19,12 @@ export const AgregarNoticia = () => {
     const handleCloseModalAgregar = () => setOpenModalAgregar(false);
     const handleOpenModalAgregar = () => setOpenModalAgregar(true);
 
-    const handleCloseAlertSuccess = () => setOpenAlertSuccess(false);
-    const handleOpenAlertSuccess = () => setOpenAlertSuccess(true);
+    const handleCloseAlertSuccess = () => {
+        setOpenAlertSuccess(false);
+        setOpenModalAgregar(false);
+        onChange(true);
+    }
+    const handleOpenAlertSuccess = () =>  setOpenAlertSuccess(true);
 
     const handleCloseAlertError = () => setOpenAlertError(false);
     const handleOpenAlertError = () => setOpenAlertError(true);
@@ -30,8 +34,8 @@ export const AgregarNoticia = () => {
         
         addNoticia(idGrupo, titulo, contenido, handleOpenAlertSuccess, handleOpenAlertError);
         onResetForm();
-        setOpenModalAgregar(false);
     }
+
 
     return (
         <>

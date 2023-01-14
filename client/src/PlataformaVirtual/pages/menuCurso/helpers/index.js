@@ -8,3 +8,6 @@ export * from './apuntes/deleteNote'
 
 //Noticias
 export * from './noticias/addNoticia'
+export * from './noticias/getGroupNoticias'
+export * from './noticias/modifyNoticia'
+export * from './noticias/deleteNoticia'

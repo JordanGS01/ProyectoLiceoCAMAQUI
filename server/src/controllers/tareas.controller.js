@@ -8,7 +8,7 @@ const getUserTodos = async (req, res, next) => {
         const { ced } = req.params;
         await pool.query
         (
-            "SELECT * FROM tareas WHERE cedula_usuario=$1", 
+            "SELECT * FROM tareas WHERE cedula_usuario=$1 ORDER BY id ASC", 
             [ced]
         ).then((answer) => {
             res.json({
