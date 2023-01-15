@@ -14,11 +14,11 @@ export const Breadcrums = (props) => {
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
-    const { id,nombre } = useParams()
-
-    console.log(id, nombre)
+    const { id, nombre } = useParams()
 
     const lista = []
+
+    // Arreglar lo de imprimir en la pantalla
 
     if (props.ruta[0] == 'M') {
         lista.push('Menú Principal')
@@ -28,17 +28,17 @@ export const Breadcrums = (props) => {
         }
     }
 
+
     return (
         <Box sx={{ height: '5vh', background: '', marginTop: '15vh', marginBottom: '1vh' }}>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>
                 <Button onClick={handleOpen} sx={{ '&:hover': { backgroundColor: 'white' }, borderRadius: '20px' }}>
                     <MoreHorizIcon sx={{ color: '#0B92DC' }} />
                 </Button>
-                {props.ruta == 'Menú Principal' ? <h7 style={{ color: '#0B92DC' }}>{props.ruta}</h7> : props.direccion=='Documentos' ? <h7 style={{ color: '#0B92DC' }}>Documentos</h7>:
-                    <h7 style={{ color: '#0B92DC' }}>{nombre}</h7>}
+                {props.ruta[0] == 'M' ? <h7 style={{ color: '#0B92DC' }}>{props.ruta}</h7> : props.direccion == 'Documentos' ? <h7 style={{ color: '#0B92DC' }}>Documentos</h7> : props.ruta.length==1 ? <h7 style={{ color: '#0B92DC' }}>{nombre}</h7>:  <h7 style={{ color: '#0B92DC' }}>{props.direccion}</h7> }
             </Box>
             <div class='breadcrums-linea'></div>
-            <BreadcrumsList  id ={id} rutas={lista} open={open} handleClose={handleClose} />
+            <BreadcrumsList idCurso={props.idCurso} id={id} rutas={lista} open={open} handleClose={handleClose} />
         </Box>
     )
 }

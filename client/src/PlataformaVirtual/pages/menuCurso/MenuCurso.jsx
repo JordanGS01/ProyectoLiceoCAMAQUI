@@ -25,7 +25,6 @@ export const MenuCurso = () => {
   //Para los breadcrums
   const lista = []
   lista.push('Menú Principal')
-  lista.push(nombre)
 
   useEffect(() => {
     if (!loged) {
