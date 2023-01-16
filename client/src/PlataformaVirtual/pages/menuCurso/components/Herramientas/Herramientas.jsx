@@ -1,22 +1,26 @@
-import { Box, Button } from '@mui/material'
-import React from 'react'
 
-import './Herramientas.css'
+
+import { useContext, useState } from 'react'
+import { UserContext } from '../../../../context/UserContext'
 
 import { useNavigate } from 'react-router-dom'
 
-import { useContext } from 'react'
+import { Box, Button } from '@mui/material'
+
+import './Herramientas.css'
+
+import { ModalApuntes } from '../ModalApuntes/ModalApuntes'
 
 
-import { UserContext } from '../../../../context/UserContext'
-
-
-
-export const Herramientas = (props) => {
-
+export const Herramientas = ({ id, nameCurso, cedula }) => {
   const navigate = useNavigate()
 
-  const { isStudent, isAdmin, logOutUser, userData, loged, isProfessor } = useContext(UserContext);
+  const [openModalApuntes, setOpenModalApuntes] = useState(false);
+
+  const onCloseModalApuntes = () => setOpenModalApuntes(false);
+  const onOpenModalApuntes = () => setOpenModalApuntes(true);
+
+  const { isStudent, isProfessor } = useContext(UserContext);
 
   return (
     <>
@@ -27,8 +31,38 @@ export const Herramientas = (props) => {
         <div style={{ background: ' rgb(7, 86, 114)', width: '100%', height: '2px' }}></div>
 
         <Box sx={{ marginLeft: '1vh', background: '', display: 'flex', flexDirection: 'row', justifyContent: 'center', marginTop: '3vh' }} >
-          <Button onClick={() => navigate(`/documentos/${props.id}/${props.nameCurso}`)} sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '1vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, width: '26vh', height: '10vh' }} > Documentos</Button>
-          <Button sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '1vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, width: '26vh', height: '10vh', marginLeft: '1vh' }} > Apuntes</Button>
+          <Button
+            sx = {{
+              background: 'rgb(7, 86, 114)',
+              color: 'white',
+              marginRight: '1vh',
+              '&:hover': {
+                backgroundColor:'rgba(6, 82, 110, 0.696)'
+              },
+              width: '26vh',
+              height: '10vh'
+            }}
+            onClick={() => navigate(`/documentos/${id}/${nameCurso}`)}
+          >
+            Documentos
+          </Button>
+          <Button
+            sx={{
+              background: 'rgb(7, 86, 114)',
+              color: 'white',
+              marginRight: '1vh',
+              '&:hover': {
+                backgroundColor: 'rgba(6, 82, 110, 0.696)'
+              },
+              width: '26vh',
+              height: '10vh',
+              marginLeft: '1vh'
+              }}
+              
+              onClick={onOpenModalApuntes}
+            >
+              Apuntes
+            </Button>
         </Box>
 
         <Box sx={{ background: '', display: 'flex', flexDirection: 'row', marginTop: '3vh' }}>
@@ -43,7 +77,7 @@ export const Herramientas = (props) => {
         <div style={{ background: ' rgb(7, 86, 114)', width: '100%', height: '2px' }}></div>
         <Box sx={{ display: 'flex', flexDirection: 'row', marginTop: '3vh' }}>
           <Button 
-            onClick={() => navigate(`/documentos/${props.id}/${props.nameCurso}`)}
+            onClick={() => navigate(`/documentos/${id}/${nameCurso}`)}
             sx={{ 
               background: 'rgb(7, 86, 114)',
               color: 'white',
@@ -60,6 +94,14 @@ export const Herramientas = (props) => {
           </Button>
         </Box>
       </Box>)}
+
+
+      <ModalApuntes
+        open={openModalApuntes}
+        handleClose={onCloseModalApuntes}
+        cedula={cedula}
+        idGrupo={id}
+      />
     </>
   )
 }

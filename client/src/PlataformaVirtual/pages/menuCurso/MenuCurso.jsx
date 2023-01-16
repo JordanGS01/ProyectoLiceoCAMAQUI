@@ -47,7 +47,7 @@ export const MenuCurso = () => {
           <Box sx={{ background: '', display: 'flex', flexDirection: 'row' }}>
             <Grupo />
 
-            {(isStudent() && <Herramientas id={id} nameCurso={nombre} />)}
+            {(isStudent() && <Herramientas id={id} nameCurso={nombre} cedula={userData.cedula}/>)}
 
             {(
               isProfessor() && 
@@ -56,7 +56,7 @@ export const MenuCurso = () => {
                   <h2>Codigo de ingreso al curso</h2>
                   <h2 style={{marginLeft:'10vh', color:'green'}}>{id}</h2>
                 </Box>
-                <Herramientas id={id} nameCurso={nombre} />
+                <Herramientas id={id} nameCurso={nombre} cedula={userData.cedula}/>
               </Box>
             )}
           </Box>

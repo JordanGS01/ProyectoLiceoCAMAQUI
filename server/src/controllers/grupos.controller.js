@@ -48,6 +48,29 @@ const getGroupStudents = async (req, res, next) => {
     }
 }
 
+const getGroupProfessor = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        await pool.query
+        (
+            "SELECT u.nombre_completo as nombre FROM relacion_ug as ug, (SELECT * FROM grupos) AS g, (SELECT * FROM usuarios) AS u WHERE (ug.id_grupo=g.id_grupo AND ug.cedula_usuario=u.cedula AND ug.id_grupo=$1 AND u.tipo='P')", 
+            [id]
+        ).then((answer) => {
+            res.json({
+                status: 'OK',
+                data: answer.rows
+            });
+        }, (error) => {
+            res.json({
+                status: 'Fail',
+                error: error
+            });
+        });
+    } catch (error) {
+        next(error);
+    }
+}
+
 const addGroup = async (req, res, next) => {
     const { id, nombre, cedulaProfesor } = req.body;
     
@@ -172,6 +195,7 @@ const deleteFromGroup = async (req, res, next) => {
 module.exports = {
     getUserGroups,
     getGroupStudents,
+    getGroupProfessor,
     addGroup,
     addStudentToGroup,
     deleteGroup,
