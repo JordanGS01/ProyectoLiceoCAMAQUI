@@ -13,6 +13,18 @@ import { ModalApuntes } from '../ModalApuntes/ModalApuntes'
 
 
 export const Herramientas = ({ id, nameCurso, cedula }) => {
+import { UserContext } from '../../../../context/UserContext'
+
+import { ModalTarjetasAprendizaje } from '../ModalTarjetasAprendizaje/ModalTarjetasAprendizaje'
+
+import { useState } from 'react'
+
+export const Herramientas = (props) => {
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const navigate = useNavigate()
 
   const [openModalApuntes, setOpenModalApuntes] = useState(false);
@@ -66,7 +78,8 @@ export const Herramientas = ({ id, nameCurso, cedula }) => {
         </Box>
 
         <Box sx={{ background: '', display: 'flex', flexDirection: 'row', marginTop: '3vh' }}>
-          <Button sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '3vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, marginLeft: '3vh', width: '100%', height: '10vh' }} > Cartas de aprendizaje</Button>
+          <Button onClick={handleOpen}  sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '3vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, marginLeft: '3vh', width: '100%', height: '10vh' }} > Cartas de aprendizaje</Button>
+          <ModalTarjetasAprendizaje  nameCurso={props.nameCurso} open={open} handleClose={handleClose} />
         </Box>
       </Box>)}
 

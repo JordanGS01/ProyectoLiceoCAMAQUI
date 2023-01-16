@@ -1,20 +1,11 @@
 
-import { NavBar } from "../../../ui"
+
+import { useParams, useNavigate } from "react-router-dom";
+
+import { Breadcrums, NavBar } from "../../../ui";
 
 import { Box } from "@mui/system"
-
-
-import { Breadcrums } from "../../../ui/Breadcrums/Breadcrums";
-
-import { useParams } from "react-router-dom";
-
-import FolderIcon from '@mui/icons-material/Folder';
-
-import ArticleIcon from '@mui/icons-material/Article';
-
-import FileDownloadIcon from '@mui/icons-material/FileDownload';
-
-import { useNavigate } from "react-router-dom";
+import { Folder, Article, FileDownload } from '@mui/icons-material';
 
 
 export const Documentos = () => {
@@ -37,21 +28,11 @@ export const Documentos = () => {
   const documentos = []
 
   documentos.push('Documento 1')
-  documentos.push('Documento 2')
-  documentos.push('Documento 3')
-  documentos.push('Documento 4')
-  documentos.push('Documento 5')
 
   const carpetas = []
 
 
   carpetas.push('Carpeta 1')
-  carpetas.push('Carpeta 2')
-  carpetas.push('Carpeta 3')
-  carpetas.push('Carpeta 4')
-  carpetas.push('Carpeta 5')
-
-
 
 
   return (
@@ -68,14 +49,17 @@ export const Documentos = () => {
 
           {carpetas.map((carp) => (<Box sx={{ width: '97%', background: '#E3E2E2', margin: '2vh', borderRadius: '5px' }} onClick= {()=> navigate(`/documentos/${id}/${nombre}/${idCarpeta}/${nombreCarpeta}`)}>
             <Box sx={{ display: 'flex', alignItems: 'center', padding: '1vh' }} > 
-              <FolderIcon sx={{ color: '  rgb(7, 86, 114)' }} /> <h7 style={{ color: '#0B92DC', marginLeft: '1vh' }}>{carp}</h7>
+              <Folder sx={{ color: '  rgb(7, 86, 114)' }} />
+                <h7 style={{ color: '#0B92DC', marginLeft: '1vh' }}>
+                  {carp}
+                </h7>
             </Box>
           </Box>))}
 
           {documentos.map((doc) => (<Box sx={{ width: '97%', background: '#E3E2E2', margin: '2vh', borderRadius: '5px' }}>
             <Box sx={{ display: 'flex', alignItems: 'center', padding: '1vh' }}>
-              <ArticleIcon sx={{ color: '  rgb(7, 86, 114)' }} /><h7 style={{ color: '#0B92DC', marginLeft: '1vh' }}>{doc}</h7>
-              <FileDownloadIcon sx={{ color: '  rgb(7, 86, 114)', marginLeft:'auto' }} />
+              <Article sx={{ color: '  rgb(7, 86, 114)' }} /><h7 style={{ color: '#0B92DC', marginLeft: '1vh' }}>{doc}</h7>
+              <FileDownload sx={{ color: '  rgb(7, 86, 114)', marginLeft:'auto' }} />
             </Box>
           </Box>))}
 
