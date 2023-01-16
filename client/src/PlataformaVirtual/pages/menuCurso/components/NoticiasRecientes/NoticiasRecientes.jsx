@@ -9,6 +9,8 @@ import { Box } from '@mui/material';
 
 import { NoticiaProfesor } from "../NoticiaProfesor/NoticiaProfesor"
 
+import { Alert } from '../../../../../ui'
+
 import { getGroupNoticias } from '../../helpers'
 
 
@@ -18,9 +20,20 @@ export const NoticiasRecientes = ({ changed, handleChanged }) => {
 
     
     const [noticias, setNoticias] = useState([]);
+    const [openAlertVerNoticia, setOpenAlertVerNoticia] = useState(false);
+    const [noticiaSeleccionada, setNoticiaSeleccionada] = useState({});
 
     const { isStudent, isProfessor } = useContext(UserContext);
 
+    const onClickedNoticia = (titulo, contenido) => {
+        setNoticiaSeleccionada({
+            titulo,
+            contenido
+        })
+        setOpenAlertVerNoticia(true);
+    }
+
+    const onCloseAlertVerNoticia = () => setOpenAlertVerNoticia(false);
 
     useEffect(() => {
         getGroupNoticias(id, setNoticias);
@@ -36,7 +49,18 @@ export const NoticiasRecientes = ({ changed, handleChanged }) => {
                     {noticias.map(({id, titulo, contenido, id_grupo}) => (
                         <Box 
                             key={id}
-                            sx={{ background: '#BAC8D0', color: '#0B92DC', marginTop: '1vh', padding: '10px', borderRadius: '5px' }}
+                            sx={{
+                                background: '#BAC8D0',
+                                color: '#0B92DC',
+                                marginTop: '1vh',
+                                padding: '10px',
+                                borderRadius: '5px',
+                                ':hover': {
+                                    cursor: 'pointer',
+                                    backgroundColor: '#A0B1BAC0'
+                                }
+                            }}
+                            onClick = {() => { onClickedNoticia(titulo, contenido) }}
                         >
                             {titulo}
                         </Box>
@@ -58,6 +82,17 @@ export const NoticiasRecientes = ({ changed, handleChanged }) => {
                     ))}
                 </Box>
             )}
+
+        <Alert 
+            open = { openAlertVerNoticia }
+            handleClose = { onCloseAlertVerNoticia }
+            title = {noticiaSeleccionada.titulo}
+            content = {noticiaSeleccionada.contenido}
+            acceptButtonText = "Aceptar"
+            acceptButtonFunction = { onCloseAlertVerNoticia }
+
+            oneButton = { true }
+        />
         </>
 
     )
