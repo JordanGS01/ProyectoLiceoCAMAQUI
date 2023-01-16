@@ -1,6 +1,6 @@
 
 
-import { useContext, useState } from "react"
+import { useContext, useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 
 import { UserContext } from "../../../../context/UserContext"
@@ -11,7 +11,7 @@ import { Estudiantes } from '../Estudiantes/Estudiantes'
 
 import { ModalSingleInput, Alert } from "../../../../../ui"
 
-import { addStudentToGroup } from '../../helpers'
+import { addStudentToGroup, getGroupProfessor } from '../../helpers'
 
 import { stylesBotonAgregar, stylesBoxBoton } from './ClasesSxEstudiantes'
 import './Grupo.css'
@@ -24,6 +24,8 @@ export const Grupo = () => {
   const [openModalCreate, setOpenModalCreate] = useState(false);
   const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
   const [openAlertError, setOpenAlertError] = useState(false);
+
+  const [professors, setProfessors] = useState([]);
 
   const [changed, setChanged] = useState(false);
 
@@ -48,7 +50,10 @@ export const Grupo = () => {
     onResetForm();
   }
 
-  const profesor = 'Ernesto Solis'
+  useEffect(() => {
+    getGroupProfessor(id, setProfessors);
+  }, [])
+  
 
   return (
     <>
@@ -80,8 +85,17 @@ export const Grupo = () => {
         <Box sx={{ marginTop: '3vh' }}>
           {(isStudent() && 
             <div style={{ fontFamily: 'Arial', color: '#4FA4D3', paddingLeft: '2vh' }}>
-              <h3>Docente:</h3>
-              <li>{profesor}</li>
+              {
+                professors.length > 1 ?
+                  <h3>Docentes:</h3>
+                :
+                  <h3>Docente:</h3>
+              }
+              {
+                professors.map(({nombre}) => (
+                  <li>{nombre}</li>
+                ))
+              }
             </div>
           )}
 
