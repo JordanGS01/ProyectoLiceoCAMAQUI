@@ -5,7 +5,13 @@ import { FormControl, TextField } from "@mui/material"
 import { stylesInputForm, stylesInputLabelProps, stylesInputProps } from './ClasesSxModal'
 
 
-export const ModalVisualizacionForm = ({ onInputChange, titulo, contenido }) => {
+export const ModalVisualizacionForm = ({ 
+    onInputChange, 
+    titulo, 
+    contenido,
+    labelTitulo,
+    labelDescripcion
+}) => {
   return (
     <>
         {/* Sección de nombre completo */}
@@ -14,7 +20,7 @@ export const ModalVisualizacionForm = ({ onInputChange, titulo, contenido }) => 
                 required
                 multiline
                 autoFocus
-                label='Titulo'
+                label={labelTitulo}
                 id='titulo'
                 sx={stylesInputForm}
                 variant='outlined'
@@ -38,7 +44,7 @@ export const ModalVisualizacionForm = ({ onInputChange, titulo, contenido }) => 
             <TextField
                 required
                 multiline
-                label='Descripción'
+                label={labelDescripcion}
                 id='descripcion'
                 sx={stylesInputForm}
                 variant='outlined'

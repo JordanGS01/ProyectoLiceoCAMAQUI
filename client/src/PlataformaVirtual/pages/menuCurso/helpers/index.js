@@ -17,3 +17,9 @@ export * from './estudiantes/getGroupStudents'
 export * from './estudiantes/deleteFromGroup'
 export * from './estudiantes/addStudentToGroup'
 export * from './estudiantes/getGroupProfessor'
+
+//Cartas de aprendizaje
+export * from './cartasAprendizaje/createCartaAprendizaje'
+export * from './cartasAprendizaje/getUserCartasAprendizaje'
+export * from './cartasAprendizaje/modifyCartaAprendizaje'
+export * from './cartasAprendizaje/deleteCartaAprendizaje'

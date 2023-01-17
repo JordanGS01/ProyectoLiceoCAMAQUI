@@ -21,6 +21,8 @@ export const ModalVisualizacion = ({
         tituloObj,
         contenidoObj,
         onSubmitForm,
+        labelTitulo="Título",
+        labelDescripcion="Descripcion"
     }) => {
 
     const { formState, onInputChange, onResetForm } = useForm({
@@ -59,6 +61,8 @@ export const ModalVisualizacion = ({
                         onInputChange={onInputChange}
                         titulo={tituloF}
                         contenido={contenido}
+                        labelTitulo={labelTitulo}
+                        labelDescripcion={labelDescripcion}
                     />
 
                     <ModalVisualizacionBotones 

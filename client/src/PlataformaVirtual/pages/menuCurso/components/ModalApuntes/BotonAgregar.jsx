@@ -34,6 +34,7 @@ export const BotonAgregar = ({ idGrupo, cedula, onChanged }) => {
         <>
         <Button
             onClick={handleOpenModalCreate}
+            sx={{ background: ' rgb(7, 86, 114)', color: 'white', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }}}
         >
             Agregar
         </Button>

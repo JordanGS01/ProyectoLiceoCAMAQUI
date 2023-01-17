@@ -26,7 +26,7 @@ export const Apunte = ({ contenido, cedulaUsuario, idGrupo, id, handleChanged })
     return (
         <Paper
             component="form"
-            sx={{ display: 'flex', alignItems: 'center', width: '80vh', mt: 1, bgcolor:'#BAC8D0' }}
+            sx={{ display: 'flex', alignItems: 'center', width: '80vh', mt: 1, ml:3, bgcolor:'#BAC8D0' }}
         >
         
         <InputBase

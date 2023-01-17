@@ -7,19 +7,14 @@ import { useNavigate } from 'react-router-dom'
 
 import { Box, Button } from '@mui/material'
 
+import { ModalTarjetasAprendizaje } from '../ModalTarjetasAprendizaje/ModalTarjetasAprendizaje'
+
 import './Herramientas.css'
 
 import { ModalApuntes } from '../ModalApuntes/ModalApuntes'
 
 
 export const Herramientas = ({ id, nameCurso, cedula }) => {
-import { UserContext } from '../../../../context/UserContext'
-
-import { ModalTarjetasAprendizaje } from '../ModalTarjetasAprendizaje/ModalTarjetasAprendizaje'
-
-import { useState } from 'react'
-
-export const Herramientas = (props) => {
 
   const [open, setOpen] = useState(false);
   const handleOpen = () => setOpen(true);
@@ -79,7 +74,7 @@ export const Herramientas = (props) => {
 
         <Box sx={{ background: '', display: 'flex', flexDirection: 'row', marginTop: '3vh' }}>
           <Button onClick={handleOpen}  sx={{ background: ' rgb(7, 86, 114)', color: 'white', marginRight: '3vh', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, marginLeft: '3vh', width: '100%', height: '10vh' }} > Cartas de aprendizaje</Button>
-          <ModalTarjetasAprendizaje  nameCurso={props.nameCurso} open={open} handleClose={handleClose} />
+          <ModalTarjetasAprendizaje  nameCurso={nameCurso} open={open} handleClose={handleClose} />
         </Box>
       </Box>)}
 

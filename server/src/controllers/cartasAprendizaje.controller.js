@@ -5,10 +5,10 @@ const pool = require('../connection')
 
 const getUserCards = async (req, res, next) => {
     try {
-        const { idGrupo, cedula } = req.body;
+        const { idGrupo, cedula } = req.params;
         await pool.query
         (
-            "SELECT * FROM cartas_aprendizaje WHERE id_grupo=$1 AND cedula_usuario=$2", 
+            "SELECT * FROM cartas_aprendizaje WHERE id_grupo=$1 AND cedula_usuario=$2 ORDER BY id ASC", 
             [idGrupo, cedula]
         ).then((answer) => {
             res.json({

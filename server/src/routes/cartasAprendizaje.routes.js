@@ -7,7 +7,7 @@ const { addCard, deleteCard, getUserCards,
 
 //Routes
 
-router.get('/cartasAprendizaje', getUserCards);
+router.get('/cartasAprendizaje/:idGrupo/:cedula', getUserCards);
 
 router.post('/cartasAprendizaje', addCard);
 

@@ -34,22 +34,23 @@ export const ModalApuntes = ({ open, handleClose, cedula, idGrupo }) => {
             aria-describedby="modal-modal-description"
         >
             <Box sx={stylesBoxContainer}>
-                <Box sx={{display:'flex', justifyContent:'space-between'}}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between', background: '#4FA4D3', padding: '2.5vh', borderTopLeftRadius: '4px', borderTopRightRadius: '4px', color: 'white' }}>
                     <Typography id="Apuntes" variant="h6" component="h2">
                         Apuntes
                     </Typography>
                     
                     <Stack flexDirection="row">
-                        <Button
-                            onClick={handleClose}
-                        >
-                            Cerrar
-                        </Button>
                         <BotonAgregar
                             idGrupo={idGrupo}
                             cedula={cedula}
                             onChanged={handleChanged}
                         />
+                        <Button
+                            onClick={handleClose}
+                            sx={{ background: ' rgb(7, 86, 114)', color: 'white', '&:hover': { backgroundColor: ' rgba(6, 82, 110, 0.696)' }, marginLeft:'1vh'}}
+                        >
+                            Cerrar
+                        </Button>
                     </Stack>
                 </Box>
 
