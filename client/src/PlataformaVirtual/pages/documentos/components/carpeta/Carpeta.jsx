@@ -1,11 +1,11 @@
 import React from 'react'
 
-import { NavBar } from "../../../ui"
+import { NavBar } from "../../../../../ui"
 
 import { Box } from "@mui/system"
 
 
-import { Breadcrums } from "../../../ui/Breadcrums/Breadcrums";
+import { Breadcrums } from "../../../../../ui/Breadcrums/Breadcrums";
 import { useParams } from 'react-router-dom';
 
 

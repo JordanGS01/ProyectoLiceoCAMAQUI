@@ -7,7 +7,7 @@ import { LogIn } from '../pages/login/LogIn'
 import { MenuCurso } from '../pages/menuCurso/MenuCurso'
 import { MenuInicial } from '../pages/menuInicial/MenuInicial'
 import { SignIn } from '../pages/signIn/SignIn'
-import { Carpeta } from '../pages/carpeta/Carpeta'
+import { Carpeta } from '..//pages/documentos/components/carpeta/Carpeta'
 
 export const PlataformaVirtualRouter = () => {
   return (

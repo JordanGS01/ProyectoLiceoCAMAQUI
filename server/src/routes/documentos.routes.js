@@ -3,7 +3,7 @@ const router = Router();
 
 //Controllers imports
 const { getGroupDocuments, addDocument,
-        deleteGroupDocument } = require('../controllers/grupos.controller')
+        deleteGroupDocument } = require('../controllers/documentos.controller')
 
 //Routes
 
