@@ -2,11 +2,16 @@ const { Router } = require('express');
 const router = Router();
 
 //Controllers imports
-const { getFiles} = require('../controllers/documentos.controller')
+const { getGroupDocuments, addDocument,
+        deleteGroupDocument } = require('../controllers/grupos.controller')
 
 //Routes
 
-router.get('documentos/:idCurso', getFiles);
+router.get('/documentos/:id', getGroupDocuments);
+
+router.post('/documentos', addDocument);
+
+router.delete('/eliminarDeGrupo/:id', deleteGroupDocument);
 
 
 module.exports = router;
