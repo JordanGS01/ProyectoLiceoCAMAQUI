@@ -27,7 +27,7 @@ export const Footer = () => {
                             </Box>
                             <Box sx={{ marginTop: '5%' }}>
                                 <Link href='/prematricula' color='inherit' sx={{ textDecoration: 'None' }} >
-                                    Prematricula en línea
+                                    Prematrícula en línea
                                 </Link>
                             </Box>
                         </Grid>
@@ -70,7 +70,7 @@ export const Footer = () => {
                     </Grid>
 
                     <Box textAlign='center' pt={{ xs: 5, sm: 5 }} pb={{ xs: 5, sm: 0 }}>
-                        jordansoncompany.com, ing y sus afiliados &reg; {new Date().getFullYear()}
+                         &reg; {new Date().getFullYear()}
                     </Box>
                 </Container>
             </Box>

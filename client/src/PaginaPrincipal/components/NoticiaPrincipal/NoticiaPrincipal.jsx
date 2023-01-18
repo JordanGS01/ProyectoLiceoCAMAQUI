@@ -24,9 +24,12 @@ export const NoticiaPrincipal = () => {
           
           <Grid item xs={6}>
             <Typography  data-testid= "textoPrincipal-test" className='PaginaPrincipal-Noticia-Texto' variant='h7' gutterBottom>
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptas expedita,
-              ab reprehenderit officiis fuga nemo doloribus dolor asperiores dolorem, ullam
-              quidem aspernatur animi tenetur ea et sequi temporibus nesciunt quibusdam.
+              Esta institución es de tipo educativa, ubicada en la zona de coopevega de cutris, se cuenta con instalaciones adecuadas 
+              para los estudiantes y profesores. 
+              <br />
+              <br />
+              Se realizan actividades que fomentan la participación, el trabajo en equipo, la inovación, el arte y otras actividades que estimulan
+              el aprendizaje.
             </Typography>
           </Grid>
         </Grid>

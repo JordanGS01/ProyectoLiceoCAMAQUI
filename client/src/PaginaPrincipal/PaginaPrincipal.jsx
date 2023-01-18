@@ -49,7 +49,7 @@ export const PaginaPrincipal = () => {
                 />
                 <Informacion
                     titulo = "Acerca del Liceo CAMAQUI"
-                    contenido = "Informacion del liceo."
+                    contenido = "Tramite para posible apertura de CINDEA, abarca los ciclos de la eduación general básica y los estudiantes avanzan por medio de módulos y créditos. Los módulos se aprueban en forma independiente unos de otros y los estudiates avanzan a su propio ritmo de estudio"
                     id = "AcercaDe"
                 />
             </Box>
