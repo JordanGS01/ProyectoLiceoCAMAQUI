@@ -37,7 +37,12 @@ export const EnhancedTableToolbar = ({ numSelected, onDeleteUsers }) => {
             variant="subtitle1"
             component="div"
           >
-            {numSelected} selected
+            {
+              numSelected > 1 ? 
+                `${numSelected} usuarios seleccionados`
+              :
+                `${numSelected} usuario seleccionado`
+            }
           </Typography>
         ) : (
           <Typography

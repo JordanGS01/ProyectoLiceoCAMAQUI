@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 import { Box, Table, TableBody, TableCell, TableContainer,
         TablePagination, TableRow, Paper, Checkbox,
-        FormControlLabel, Switch, Alert } from '@mui/material';
+        FormControlLabel, Switch } from '@mui/material';
 
 import { UserContext } from '../../context/UserContext';
 import { NavBar } from '../../../ui/components/NavBar/NavBar';
@@ -40,7 +40,7 @@ export const Admin = () => {
   }, [loged])
 
   useEffect(() => {
-      
+    
   }, [rowsData])
   
   
@@ -117,7 +117,14 @@ export const Admin = () => {
             </TableBody>
           </Table>
         </TableContainer>
+
         <TablePagination
+          labelRowsPerPage="Filas por página"
+          labelDisplayedRows={
+            ({ from, to, count }) => {
+              return '' + from + '-' + to + ' de ' + count
+            }
+          }
           rowsPerPageOptions={[5, 10, 25]}
           component="div"
           count={rowsData.length}
@@ -126,11 +133,14 @@ export const Admin = () => {
           onPageChange={handleChangePage}
           onRowsPerPageChange={handleChangeRowsPerPage}
         />
+
       </Paper>
+
       <FormControlLabel
         control={<Switch checked={dense} onChange={handleChangeDense} />}
-        label="Dense padding"
+        label="Hacer la tabla más densa"
       />
+
     </Box>    
     </>
   );

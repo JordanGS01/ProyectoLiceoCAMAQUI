@@ -26,8 +26,7 @@ export const Botones = () => {
               fontFamily:'arial',
               color: '#FFFFFF'
             }}
-
-            onClick = { () => { navigate('/prematricula') } }
+            href="https://docs.google.com/forms/d/e/1FAIpQLSfTY_oFFCOMHvMCrQWFrtjAnR33fKtEUUXQKX8ny-oYXi_oSg/viewform?usp=sf_link"
           >
             Prematricula en línea
           </Button>
